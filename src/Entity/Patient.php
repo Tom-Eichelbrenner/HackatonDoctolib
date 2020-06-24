@@ -59,6 +59,11 @@ class Patient
      */
     private $messages;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sex;
+
     public function __construct()
     {
         $this->adviceRequests = new ArrayCollection();
@@ -212,4 +217,15 @@ class Patient
         return $this;
     }
 
+    public function getSex(): ?string
+    {
+        return $this->sex;
+    }
+
+    public function setSex(string $sex): self
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
 }

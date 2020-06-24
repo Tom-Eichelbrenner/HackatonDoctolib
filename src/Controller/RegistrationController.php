@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Patient;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
@@ -20,6 +21,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
     {
         $user = new User();
+        $patient = new Patient();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -31,8 +33,16 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $user->setRoles(['ROLE_PATIENT']);
+            $user->setPatient($patient);
+            $patient->setDisease($form->get('pathology')->getData());
+            $patient->setRegion($form->get('region')->getData());
+            $patient->setBdate($form->get('birthDate')->getData());
+            $patient->setLName($form->get('lName')->getData());
+            $patient->setFName($form->get('fName')->getData());
+            $patient->setSex($form->get('sexe')->getData());
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($patient);
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
@@ -45,8 +55,10 @@ class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render(
+            'registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-        ]);
+            ]
+        );
     }
 }

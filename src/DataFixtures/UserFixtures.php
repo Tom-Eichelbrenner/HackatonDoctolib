@@ -28,7 +28,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_PATIENT']);
-            $user->setPassword($this->passwordEncoder->encodePassword($user,'password'));
+            $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
             $manager->persist($user);
             $patient = new Patient();
             $patient->setUser($user);
@@ -45,7 +45,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_DOCTOR']);
-            $user->setPassword($this->passwordEncoder->encodePassword($user,'password'));
+            $user->setPassword($this->passwordEncoder->encodePassword($user, 'password'));
             $manager->persist($user);
 
             $doctor = new Doctor();
@@ -54,7 +54,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $doctor->setFName($faker->firstName);
             $doctor->setUser($user);
             $doctor->setPhone($faker->phoneNumber);
-            $doctor->setSpeciality($this->getReference('speciality_'.rand(1,50)));
+            $doctor->setSpeciality($this->getReference('speciality_'.rand(1, 50)));
             $this->addReference('doctor_'.$i, $doctor);
             $manager->persist($doctor);
         }

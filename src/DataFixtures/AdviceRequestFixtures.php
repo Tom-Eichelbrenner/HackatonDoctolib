@@ -18,8 +18,8 @@ class AdviceRequestFixtures extends Fixture implements DependentFixtureInterface
         $faker = Faker\Factory::create('fr_FR');
 
         $advice = new AdviceRequest();
-        $advice->setIsViewed(rand(true,false));
-        $rand = rand(1,50);
+        $advice->setIsViewed(rand(true, false));
+        $rand = rand(1, 50);
         $advice->setPathology($this->getReference('speciality_'.$rand));
         $advice->setPatient($this->getReference('patient_25'));
         $advice->setProblem($faker->text);
@@ -31,7 +31,7 @@ class AdviceRequestFixtures extends Fixture implements DependentFixtureInterface
             $message->setDate($date);
             $message->setMessage($faker->text);
             $message->setAdviceRequest($advice);
-            if($o%2==0){
+            if($o%2==0) {
                 $message->setDoctor($this->getReference('doctor_25'));
             }else{
                 $message->setPatient($this->getReference('patient_25'));
