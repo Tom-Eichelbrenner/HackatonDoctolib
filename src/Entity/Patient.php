@@ -50,13 +50,13 @@ class Patient
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Requests::class, mappedBy="patient")
+     * @ORM\OneToMany(targetEntity=AdviceRequest::class, mappedBy="patient")
      */
-    private $requests;
+    private $adviceRequests;
 
     public function __construct()
     {
-        $this->requests = new ArrayCollection();
+        $this->adviceRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,33 +142,34 @@ class Patient
     }
 
     /**
-     * @return Collection|Requests[]
+     * @return Collection|AdviceRequest[]
      */
-    public function getRequests(): Collection
+    public function getAdviceRequests(): Collection
     {
-        return $this->requests;
+        return $this->adviceRequests;
     }
 
-    public function addRequest(Requests $request): self
+    public function addAdviceRequest(AdviceRequest $adviceRequest): self
     {
-        if (!$this->requests->contains($request)) {
-            $this->requests[] = $request;
-            $request->setPatient($this);
+        if (!$this->adviceRequests->contains($adviceRequest)) {
+            $this->adviceRequests[] = $adviceRequest;
+            $adviceRequest->setPatient($this);
         }
 
         return $this;
     }
 
-    public function removeRequest(Requests $request): self
+    public function removeAdviceRequest(AdviceRequest $adviceRequest): self
     {
-        if ($this->requests->contains($request)) {
-            $this->requests->removeElement($request);
+        if ($this->adviceRequests->contains($adviceRequest)) {
+            $this->adviceRequests->removeElement($adviceRequest);
             // set the owning side to null (unless already changed)
-            if ($request->getPatient() === $this) {
-                $request->setPatient(null);
+            if ($adviceRequest->getPatient() === $this) {
+                $adviceRequest->setPatient(null);
             }
         }
 
         return $this;
     }
+
 }
