@@ -10,9 +10,16 @@ use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use PhpParser\Comment\Doc;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -21,7 +28,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_PATIENT']);
-            $user->setPassword('password');
+            $user->setPassword($this->passwordEncoder->encodePassword($user,'password'));
             $manager->persist($user);
             $patient = new Patient();
             $patient->setUser($user);
@@ -38,7 +45,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_DOCTOR']);
-            $user->setPassword('password');
+            $user->setPassword($this->passwordEncoder->encodePassword($user,'password'));
             $manager->persist($user);
 
             $doctor = new Doctor();
