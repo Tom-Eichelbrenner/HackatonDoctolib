@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\RequestsRepository;
+use App\Repository\AdviceRequestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RequestsRepository::class)
+ * @ORM\Entity(repositoryClass=AdviceRequestRepository::class)
  */
-class Requests
+class AdviceRequest
 {
     /**
      * @ORM\Id()
@@ -20,7 +20,7 @@ class Requests
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="requests")
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="adviceRequests")
      * @ORM\JoinColumn(nullable=false)
      */
     private $patient;
@@ -28,21 +28,25 @@ class Requests
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $subject;
-
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
+    private $topic;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Speciality::class, inversedBy="requests")
+     * @ORM\ManyToOne(targetEntity=Speciality::class)
      */
     private $pathology;
 
     /**
-     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="request")
+     * @ORM\Column(type="text")
+     */
+    private $problem;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isViewed;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="adviceRequest")
      */
     private $messages;
 
@@ -68,26 +72,14 @@ class Requests
         return $this;
     }
 
-    public function getSubject(): ?string
+    public function getTopic(): ?string
     {
-        return $this->subject;
+        return $this->topic;
     }
 
-    public function setSubject(string $subject): self
+    public function setTopic(string $topic): self
     {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
+        $this->topic = $topic;
 
         return $this;
     }
@@ -104,6 +96,30 @@ class Requests
         return $this;
     }
 
+    public function getProblem(): ?string
+    {
+        return $this->problem;
+    }
+
+    public function setProblem(string $problem): self
+    {
+        $this->problem = $problem;
+
+        return $this;
+    }
+
+    public function getIsViewed(): ?bool
+    {
+        return $this->isViewed;
+    }
+
+    public function setIsViewed(bool $isViewed): self
+    {
+        $this->isViewed = $isViewed;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Messages[]
      */
@@ -116,7 +132,7 @@ class Requests
     {
         if (!$this->messages->contains($message)) {
             $this->messages[] = $message;
-            $message->setRequest($this);
+            $message->setAdviceRequest($this);
         }
 
         return $this;
@@ -127,8 +143,8 @@ class Requests
         if ($this->messages->contains($message)) {
             $this->messages->removeElement($message);
             // set the owning side to null (unless already changed)
-            if ($message->getRequest() === $this) {
-                $message->setRequest(null);
+            if ($message->getAdviceRequest() === $this) {
+                $message->setAdviceRequest(null);
             }
         }
 

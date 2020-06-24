@@ -22,11 +22,6 @@ class Messages
      */
     private $doctor;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Requests::class, inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $request;
 
     /**
      * @ORM\Column(type="date")
@@ -37,6 +32,12 @@ class Messages
      * @ORM\Column(type="text")
      */
     private $message;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=AdviceRequest::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $adviceRequest;
 
     public function getId(): ?int
     {
@@ -51,18 +52,6 @@ class Messages
     public function setDoctor(?Doctor $doctor): self
     {
         $this->doctor = $doctor;
-
-        return $this;
-    }
-
-    public function getRequest(): ?Requests
-    {
-        return $this->request;
-    }
-
-    public function setRequest(?Requests $request): self
-    {
-        $this->request = $request;
 
         return $this;
     }
@@ -90,4 +79,17 @@ class Messages
 
         return $this;
     }
+
+    public function getAdviceRequest(): ?AdviceRequest
+    {
+        return $this->adviceRequest;
+    }
+
+    public function setAdviceRequest(?AdviceRequest $adviceRequest): self
+    {
+        $this->adviceRequest = $adviceRequest;
+
+        return $this;
+    }
+
 }
