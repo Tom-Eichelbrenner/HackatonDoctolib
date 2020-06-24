@@ -36,13 +36,13 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity=Patient::class, inversedBy="user", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $patient;
 
     /**
      * @ORM\OneToOne(targetEntity=Doctor::class, inversedBy="user", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $doctor;
 
