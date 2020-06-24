@@ -70,6 +70,9 @@ class Patient
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getFName(): ?string
     {
         return $this->fName;

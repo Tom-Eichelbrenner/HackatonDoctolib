@@ -43,7 +43,7 @@ class AdviceRequest
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isViewed;
+    private $isViewed = false;
 
     /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="adviceRequest")
