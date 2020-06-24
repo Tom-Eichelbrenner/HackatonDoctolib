@@ -62,7 +62,7 @@ class Patient
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $SSex;
+    private $sex;
 
     public function __construct()
     {
@@ -214,16 +214,15 @@ class Patient
         return $this;
     }
 
-    public function getSSex(): ?string
+    public function getSex(): ?string
     {
-        return $this->SSex;
+        return $this->sex;
     }
 
-    public function setSSex(string $SSex): self
+    public function setSex(string $sex): self
     {
-        $this->SSex = $SSex;
+        $this->sex = $sex;
 
         return $this;
     }
-
 }

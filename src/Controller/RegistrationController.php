@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
             $patient->setBdate($form->get('birthDate')->getData());
             $patient->setLName($form->get('lName')->getData());
             $patient->setFName($form->get('fName')->getData());
-            $patient->setSSex($form->get('sexe')->getData());
+            $patient->setSex($form->get('sexe')->getData());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($patient);
             $entityManager->persist($user);
