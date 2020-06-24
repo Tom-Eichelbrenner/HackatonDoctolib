@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Requests{% endblock %}
+
+{% block body %}
+    {% for advice in advice_request %}
+        <h4>Patient</h4>
+        <p>{{ advice.patient.lname }} {{ advice.patient.fname }}</p>
+
+        <h4>Maladies connues</h4>
+        <p>{{ advice.patient.disease }}</p>
+
+        <h4>Sujet</h4>
+        <p>{{ advice.topic }}</p>
+
+        <h4>Problèmatique</h4>
+        <p>{{ advice.problem }}</p>
+
+        <h4>Pathologie</h4>
+        <p>{{ advice.pathology.category }}</p>
+    {% else %}
+        <h2>Nothing to display</h2>
+    {% endfor %}
+{% endblock %}
