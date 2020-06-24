@@ -4,7 +4,10 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,14 +21,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -42,6 +37,37 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('fName', null, [
+                'label' => 'Prénom',
+                'mapped' => false
+            ])
+            ->add('lName', null, [
+                'label' => 'Nom',
+                'mapped' => false
+            ])
+            ->add('birthDate', BirthdayType::class, [
+                'label' => 'Date de naissance',
+                'mapped' => false,
+            ])
+            ->add('region', null, [
+                'label' => 'Région',
+                'mapped' => false
+            ])
+            ->add('sexe', ChoiceType::class, [
+                'choices' => [
+                    'Un homme' => 'homme',
+                    'Une femme' => 'femme',
+                ],
+                'label' => 'Je suis : ',
+                'mapped' => false])
+//            ->add('pathology', null,
+//                'label'    => "On m'a diagnostiqué une (ou plusieurs) maladies.",
+//                'mapped'=>false)
+            ->add('pathology',null,[
+                'label' => "Mes maladies diagnostiquées (ne pas remplir si nul)",
+                'mapped' => false
+            ])
+
         ;
     }
 
