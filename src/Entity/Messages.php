@@ -39,6 +39,11 @@ class Messages
      */
     private $adviceRequest;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="messages")
+     */
+    private $patient;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Messages
     public function setAdviceRequest(?AdviceRequest $adviceRequest): self
     {
         $this->adviceRequest = $adviceRequest;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): self
+    {
+        $this->patient = $patient;
 
         return $this;
     }
