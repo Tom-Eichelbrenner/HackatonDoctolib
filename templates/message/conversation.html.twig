@@ -7,20 +7,20 @@
         <div class="row mx-auto my-5">
             <h3 class="text-center mx-auto">{{ conv.doctor.fName }} {{ conv.doctor.lName }}</h3>
         </div>
-        <div class="row col-7 mx-auto">
+        <div class="container-fluid mx-auto col-7">
             {% for message in messages %}
                 {% if message.doctor != null %}
-                    <div class="row mr-auto">
+                    <div class="row col-3">
                         <h4>{{ message.doctor.lName }} {{ message.doctor.fName }} : </h4>
                     </div>
-                    <div class="row mr-auto">
+                    <div class="row ">
                         <p>{{ message.message }}</p>
                     </div>
                 {% else %}
-                    <div class="row ml-auto">
+                    <div class="row col-3">
                         <h4>{{ message.patient.lName }} {{ message.patient.fName }} : </h4>
                     </div>
-                    <div class="row ml-auto">
+                    <div class="row">
                         <p>{{ message.message }}</p>
                     </div>
                 {% endif %}

@@ -30,16 +30,13 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="conversation_show", methods={"GET","POST"})
-     * @param AdviceRequest $adviceRequest
-     * @param Request $request
-     * @return Response
+     * @Route("/{id}", name="conversation_show", methods={"GET","POST"}, requirements={"id":"\d+"})
      */
     public function show(AdviceRequest $adviceRequest, Request $request): Response
     {
-        $message = new Messages();
 
         if (isset($_POST['submit']) and isset($_POST['message'])) {
+            $message = new Messages();
             $entityManager = $this->getDoctrine()->getManager();
             $msg = $_POST['message'];
             $message->setAdviceRequest($adviceRequest);
