@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Doctor{% endblock %}
+
+{% block body %}
+    <h1>Edit</h1>
+
+    {{ include('/advice_request/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

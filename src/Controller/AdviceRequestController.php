@@ -7,6 +7,7 @@ use App\Entity\Patient;
 use App\Entity\User;
 use App\Form\AdviceRequestType;
 use App\Repository\AdviceRequestRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class AdviceRequestController extends AbstractController
 {
 
     /**
-     * @Route("/", name="advice_request_index", methods={"GET"})
+     * @Route("/", name="ask_index", methods={"GET"})
      */
     public function index(AdviceRequestRepository $adviceRequestRepository): Response
     {
@@ -30,7 +31,7 @@ class AdviceRequestController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="advice_request_new", methods={"GET","POST"})
+     * @Route("/new", name="ask_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -72,7 +73,7 @@ class AdviceRequestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="advice_request_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="ask_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, AdviceRequest $adviceRequest): Response
     {
@@ -92,7 +93,7 @@ class AdviceRequestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="advice_request_delete", methods={"DELETE"})
+     * @Route("/{id}", name="ask_delete", methods={"DELETE"})
      */
     public function delete(Request $request, AdviceRequest $adviceRequest): Response
     {
@@ -102,6 +103,6 @@ class AdviceRequestController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('advice_request_index');
+        return $this->redirectToRoute('home');
     }
 }
