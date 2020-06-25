@@ -73,6 +73,8 @@ class DoctorController extends AbstractController
             $doctor->setSpeciality($form->get('pathology')->getData());
             $doctor->setRegion($form->get('region')->getData());
             $doctor->setPhone($form->get('phone')->getData());
+            $doctor->setFName($form->get('fName')->getData());
+            $doctor->setLName($form->get('lName')->getData());
             $this->getDoctrine()->getManager()->persist($doctor);
             $this->getDoctrine()->getManager()->flush();
 
