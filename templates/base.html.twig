@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
+
 </head>
 <body>
+
 <!-- Navbar -->
 {% include '_navbar.html.twig' %}
 <!-- Navbar -->
+
 {% block body %}{% endblock %}
+
 <!-- Footer -->
 {% include '_footer.html.twig' %}
 <!-- Footer -->
@@ -19,5 +24,6 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
 </body>
 </html>
