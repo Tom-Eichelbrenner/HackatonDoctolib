@@ -52,7 +52,7 @@ class AdviceRequestController extends AbstractController
             $adviceRequest->setPatient($patient);
             $entityManager->persist($adviceRequest);
             $entityManager->flush();
-
+            $this->addFlash('succes','Votre demande à bien été prise en compte, vous serez rapidement mis en contact avec un médecin');
             return $this->redirectToRoute('home');
         }
 
