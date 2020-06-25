@@ -30,11 +30,6 @@ class Doctor
     private $lName;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $region;
-
-    /**
      * @ORM\Column(type="string")
      */
     private $phone;
@@ -54,6 +49,12 @@ class Doctor
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="doctor")
      */
     private $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class, inversedBy="doctors")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
 
     /**
      * @ORM\OneToMany(targetEntity=AdviceRequest::class, mappedBy="doctor")
@@ -175,6 +176,18 @@ class Doctor
                 $message->setDoctor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

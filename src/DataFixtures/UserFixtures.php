@@ -4,9 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Doctor;
 use App\Entity\Patient;
+use App\Entity\Region;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -35,10 +37,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $patient->setDisease($faker->text);
             $patient->setFName($faker->firstName);
             $patient->setLName($faker->lastName);
-            $patient->setRegion($faker->city);
-            $sex = ['homme', 'femme'];
-            $patient->setSex($sex[rand(0, 1)]);
-            $this->addReference('patient_' . $i, $patient);
+            $patient->setRegion($this->getReference(Region::class."_".rand(1, 101)));
+            $sex = ['homme','femme'];
+            $patient->setSex($sex[rand(0,1)]);
+            $this->addReference('patient_'.$i, $patient);
             $manager->persist($patient);
         }
 
@@ -50,7 +52,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
 
             $doctor = new Doctor();
-            $doctor->setRegion($faker->city);
+            $doctor->setRegion($this->getReference(Region::class."_".rand(1, 101)));
             $doctor->setLName($faker->lastName);
             $doctor->setFName($faker->firstName);
             $doctor->setUser($user);
@@ -65,6 +67,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [SpecialityFixtures::class];
+        return [
+            SpecialityFixtures::class,
+            RegionFixtures::class,
+        ];
     }
 }
