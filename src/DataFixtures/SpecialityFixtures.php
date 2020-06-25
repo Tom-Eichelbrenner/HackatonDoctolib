@@ -11,9 +11,9 @@ class SpecialityFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $speciality = [
+            'Médecine générale',
             'Chirurgie Dentaire',
             'Radiologie',
-            'Médecine générale',
             'Anesthésie',
             'Ophtalmologie',
             'Gynécologie obstréticienne',

@@ -19,8 +19,7 @@ class AdviceRequestType extends AbstractType
                 'pathology', EntityType::class, [
                     'class' => Speciality::class,
                     'choice_label' => 'category',
-                    'label' => 'Pathologie (si connue): ',
-                    'placeholder' => 'Je ne connais pas ma pathologie'
+                    'label' => 'Pathologie (si connue): '
                 ]
             )
             ->add('problem', null, ['label' => 'Je décris mon problème: '])/**
