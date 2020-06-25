@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\AdviceRequest;
+use Symfony\Component\Routing\Annotation;
 use App\Entity\Messages;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MessageController extends AbstractController
 {
+
     /**
      * @Route("/message", name="message")
      */
@@ -21,7 +23,7 @@ class MessageController extends AbstractController
     {
 
         if ($this->getUser()->getPatient() != null) {
-            $patient=$this->getUser()->getPatient();
+            $patient = $this->getUser()->getPatient();
             $requests = $patient->getAdviceRequests();
 
             return $this->render('message/indexpatient.html.twig', [
@@ -29,8 +31,8 @@ class MessageController extends AbstractController
                 'patient' => $patient,
                 'requests' => $requests
             ]);
-        }else{
-            $doctor=$this->getUser()->getDoctor();
+        } else {
+            $doctor = $this->getUser()->getDoctor();
             $requests = $doctor->getAdviceRequests();
 
             return $this->render('message/indexdoctor.html.twig', [
@@ -39,6 +41,23 @@ class MessageController extends AbstractController
                 'requests' => $requests
             ]);
         }
+    }
+
+
+    /**
+     * @Route("/answer/{id}", name="answer", requirements={"id":"\d+"})
+     */
+    public function answer(AdviceRequest $adviceRequest, Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $adviceRequest->setIsViewed(true);
+        $id = $adviceRequest->getId();
+        $adviceRequest->setDoctor($this->getUser()->getDoctor());
+        $entityManager->persist($adviceRequest);
+        $entityManager->flush();
+        return $this->redirectToRoute('conversation_show',['id' => $id]);
+
     }
 
     /**

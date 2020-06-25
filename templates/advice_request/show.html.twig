@@ -3,22 +3,19 @@
 {% block title %}Requests{% endblock %}
 
 {% block body %}
-    {% for advice in advice_request %}
-        <h4>Patient</h4>
-        <p>{{ advice.patient.lname }} {{ advice.patient.fname }}</p>
+        <div class="card mx-auto" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ advice.patient.lname }} {{ advice.patient.fname }}</h5>
+                <p class="card-text">{{ advice.topic }}</p>
+                <p class="card-text">{{ advice.problem }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Maladies connues : {{ advice.patient.disease }}</li>
+                <li class="list-group-item">{{ advice.pathology.category }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="{{ path('answer',{'id': advice.id} )}}" class="card-link">Répondre a ce patient</a>
+            </div>
+        </div>
 
-        <h4>Maladies connues</h4>
-        <p>{{ advice.patient.disease }}</p>
-
-        <h4>Sujet</h4>
-        <p>{{ advice.topic }}</p>
-
-        <h4>Problèmatique</h4>
-        <p>{{ advice.problem }}</p>
-
-        <h4>Pathologie</h4>
-        <p>{{ advice.pathology.category }}</p>
-    {% else %}
-        <h2>Nothing to display</h2>
-    {% endfor %}
 {% endblock %}
