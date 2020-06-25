@@ -24,9 +24,12 @@
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
-            <button class="btn bg-dark text-white mt-3" type="submit">
+            <div class="m-1 row d-flex align-items-center">
+                <a class="btn bg-dark text-white" type="submit">
                 Sign in
-            </button>
+                </a>
+                <p class="mt-3 mx-1 ml-auto">Je n'ai pas de compte ? <a href="{{ path('app_register_patient') }}">M'inscrire</a></p>
+            </div>
         </div>
 
         {#
