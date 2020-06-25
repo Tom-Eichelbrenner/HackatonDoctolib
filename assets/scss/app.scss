@@ -3,6 +3,7 @@
 /** Importing Bootstrap functions and variables */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/bootstrap-grid";
 $theme-colors: (
         "primary":    $primary-color,
         "secondary":  $secondary-color,
@@ -214,6 +215,15 @@ footer{
 }
 .dark-color{
   background-color: #343739;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .position-#{$breakpoint}-fixed{
+      position : fixed !important;
+      max-width: 40%;
+    }
+  }
 }
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
