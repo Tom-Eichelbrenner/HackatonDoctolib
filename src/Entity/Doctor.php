@@ -61,10 +61,17 @@ class Doctor
      */
     private $adviceRequests;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=AdviceRequest::class, inversedBy="blacklisted")
+     */
+    private $blacklist;
+
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
         $this->adviceRequests = new ArrayCollection();
+        $this->blacklist = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,4 +217,31 @@ class Doctor
 
         return $this;
     }
+
+    /**
+     * @return Collection|AdviceRequest[]
+     */
+    public function getBlacklist(): Collection
+    {
+        return $this->blacklist;
+    }
+
+    public function addBlacklist(AdviceRequest $blacklist): self
+    {
+        if (!$this->blacklist->contains($blacklist)) {
+            $this->blacklist[] = $blacklist;
+        }
+
+        return $this;
+    }
+
+    public function removeBlacklist(AdviceRequest $blacklist): self
+    {
+        if ($this->blacklist->contains($blacklist)) {
+            $this->blacklist->removeElement($blacklist);
+        }
+
+        return $this;
+    }
+
 }

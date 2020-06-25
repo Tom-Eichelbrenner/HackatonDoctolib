@@ -47,8 +47,8 @@ class AdviceRequestController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user =$this->getUser();
-            $patient=$user->getPatient();
+            $user = $this->getUser();
+            $patient = $user->getPatient();
             $adviceRequest->setPatient($patient);
             $entityManager->persist($adviceRequest);
             $entityManager->flush();
@@ -68,14 +68,21 @@ class AdviceRequestController extends AbstractController
     public function show(AdviceRequestRepository $adviceRequestRepository): Response
     {
         $user = $this->getUser();
-        $doctor= $user->getDoctor();
+        $doctor = $user->getDoctor();
+        $aaaaa = [];
+        $blacklisted = $doctor->getBlacklist()->toArray();
         $requests = $adviceRequestRepository->findViewed($doctor->getSpeciality(), false);
         shuffle($requests);
-        dump($requests);
-        $request = $requests[1];
+        foreach ($requests as $item) {
+            if (!in_array($item, $blacklisted)) {
+                $request = $item;
+            }else{
+                $request = 1;
+            }
+        };
         return $this->render('advice_request/show.html.twig', [
-            'advice' => $request,
-        ]);
+        'advice' => $request,
+    ]);
     }
 
     /**
@@ -99,11 +106,24 @@ class AdviceRequestController extends AbstractController
     }
 
     /**
+     * @Route("/blacklist/{id}", name="blacklist", methods={"GET","POST"})
+     */
+    public function blacklist(Request $request, AdviceRequest $adviceRequest): Response
+    {
+        $doctor = $this->getUser()->getDoctor();
+        $doctor->addBlacklist($adviceRequest);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($doctor);
+        $entityManager->flush();
+        return $this->redirectToRoute('advice_request_show');
+    }
+
+    /**
      * @Route("/{id}", name="ask_delete", methods={"DELETE"})
      */
     public function delete(Request $request, AdviceRequest $adviceRequest): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$adviceRequest->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $adviceRequest->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($adviceRequest);
             $entityManager->flush();
