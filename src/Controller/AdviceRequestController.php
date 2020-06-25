@@ -73,16 +73,16 @@ class AdviceRequestController extends AbstractController
         $blacklisted = $doctor->getBlacklist()->toArray();
         $requests = $adviceRequestRepository->findViewed($doctor->getSpeciality(), false);
         shuffle($requests);
+        $request = 1;
         foreach ($requests as $item) {
             if (!in_array($item, $blacklisted)) {
                 $request = $item;
-            }else{
-                $request = 1;
+                return $this->render('advice_request/show.html.twig', [
+                    'advice' => $request
+                ]);
             }
         };
-        return $this->render('advice_request/show.html.twig', [
-        'advice' => $request,
-    ]);
+        return $this->render('advice_request/shownothing.html.twig');
     }
 
     /**
