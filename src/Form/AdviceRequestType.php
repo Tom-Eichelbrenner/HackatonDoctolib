@@ -19,6 +19,7 @@ class AdviceRequestType extends AbstractType
                 'pathology', EntityType::class, [
                     'class' => Speciality::class,
                     'choice_label' => 'category',
+
                     'label' => 'Selectionnez une spécialité médicale si mon problème est lié à une de mes pathologies diagnostiquées (sinon laisser médecine générale) :',
                     'placeholder' => 'Je ne connais pas ma pathologie'
                 ]
