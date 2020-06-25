@@ -19,14 +19,26 @@ class MessageController extends AbstractController
      */
     public function index()
     {
-        $patient = $this->getUser()->getPatient();
-        $requests = $patient->getAdviceRequests();
 
-        return $this->render('message/index.html.twig', [
-            'controller_name' => 'MessageController',
-            'patient' => $patient,
-            'requests' => $requests
-        ]);
+        if ($this->getUser()->getPatient() != null) {
+            $patient=$this->getUser()->getPatient();
+            $requests = $patient->getAdviceRequests();
+
+            return $this->render('message/indexpatient.html.twig', [
+                'controller_name' => 'MessageController',
+                'patient' => $patient,
+                'requests' => $requests
+            ]);
+        }else{
+            $doctor=$this->getUser()->getDoctor();
+            $requests = $doctor->getAdviceRequests();
+
+            return $this->render('message/indexdoctor.html.twig', [
+                'controller_name' => 'MessageController',
+                'doctor' => $doctor,
+                'requests' => $requests
+            ]);
+        }
     }
 
     /**

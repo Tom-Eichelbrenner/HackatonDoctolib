@@ -22,7 +22,7 @@ class AdviceRequestController extends AbstractController
     public function index(AdviceRequestRepository $adviceRequestRepository): Response
     {
         return $this->render(
-            'advice_request/index.html.twig', [
+            'advice_request/indexpatient.html.twig', [
                 'advice_requests' => $adviceRequestRepository->findAll(),
             ]
         );

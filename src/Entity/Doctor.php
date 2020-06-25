@@ -56,7 +56,7 @@ class Doctor
     private $messages;
 
     /**
-     * @ORM\OneToMany(targetEntity=AdviceRequest::class, mappedBy="ddoctor")
+     * @ORM\OneToMany(targetEntity=AdviceRequest::class, mappedBy="doctor")
      */
     private $adviceRequests;
 
@@ -191,7 +191,7 @@ class Doctor
     {
         if (!$this->adviceRequests->contains($adviceRequest)) {
             $this->adviceRequests[] = $adviceRequest;
-            $adviceRequest->setDdoctor($this);
+            $adviceRequest->setDoctor($this);
         }
 
         return $this;
@@ -202,8 +202,8 @@ class Doctor
         if ($this->adviceRequests->contains($adviceRequest)) {
             $this->adviceRequests->removeElement($adviceRequest);
             // set the owning side to null (unless already changed)
-            if ($adviceRequest->getDdoctor() === $this) {
-                $adviceRequest->setDdoctor(null);
+            if ($adviceRequest->getDoctor() === $this) {
+                $adviceRequest->setDoctor(null);
             }
         }
 
