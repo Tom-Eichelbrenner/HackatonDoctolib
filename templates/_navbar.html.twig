@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-primary justify-content-between">
+<nav class="navbar navbar-light bg-primary justify-content-between fixed-top">
     <a class="navbar-brand" href="{{ path('home') }}">
         <img src="{{ asset('build/images/eir.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Eir rune">
         Eir Advices
@@ -17,8 +17,8 @@
                 <a class="nav-item nav-link" href="{{ path('advice_request_show') }}">Voir les demandes</a>
                 <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
             {% else %}
-                <a class="nav-item nav-link" href="/register">S'inscrire</a>
-                <a class="nav-item nav-link" href="/login">Se connecter</a>
+                <a class="nav-item nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+                <a class="nav-item nav-link" href="{{ path('app_login') }}">Se connecter</a>
             {% endif %}
         </div>
     </div>

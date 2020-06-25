@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://kit.fontawesome.com/285adceaff.js" crossorigin="anonymous"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-
 </head>
 <body>
 
 <!-- Navbar -->
 {% include '_navbar.html.twig' %}
 <!-- Navbar -->
-<div class="container-fluid p-5" id="main">
+<div class="container-fluid px-2 py-5 p-lg-5 my-5" id="main">
 {% block body %}{% endblock %}
 </div>
 <!-- Footer -->
