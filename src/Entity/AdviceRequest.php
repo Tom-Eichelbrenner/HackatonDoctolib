@@ -50,6 +50,11 @@ class AdviceRequest
      */
     private $messages;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Doctor::class, inversedBy="adviceRequests")
+     */
+    private $doctor;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -147,6 +152,18 @@ class AdviceRequest
                 $message->setAdviceRequest(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDoctor(): ?Doctor
+    {
+        return $this->doctor;
+    }
+
+    public function setDoctor(?Doctor $doctor): self
+    {
+        $this->doctor = $doctor;
 
         return $this;
     }

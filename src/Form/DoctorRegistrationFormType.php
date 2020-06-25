@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Doctor;
 use App\Entity\Speciality;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -41,35 +40,47 @@ class DoctorRegistrationFormType extends AbstractType
                     ],
                 ]
             )
-            ->add('fName', null, [
-                'label' => 'Prénom',
-                'mapped' => false
-            ])
-            ->add('lName', null, [
-                'label' => 'Nom',
-                'mapped' => false
-            ])
-            ->add('region', null, [
-                'mapped' => false,
-                'label' => 'Votre région'
-            ])
-            ->add('phone', null, [
-                'label' => 'Votre numéro de téléphone',
-                'mapped' => false
-            ])
-            ->add('pathology', EntityType::class, [
-                'class' => Speciality::class,
-                'choice_label' => 'category',
-                'mapped'=>false,
-                'label' => 'Mon secteur d\'activité: ',
-                'placeholder' => 'Je ne connais pas ma pathologie'
-            ]);
+            ->add(
+                'fName', null, [
+                    'label' => 'Prénom',
+                    'mapped' => false
+                ]
+            )
+            ->add(
+                'lName', null, [
+                    'label' => 'Nom',
+                    'mapped' => false
+                ]
+            )
+            ->add(
+                'region', null, [
+                    'mapped' => false,
+                    'label' => 'Votre région'
+                ]
+            )
+            ->add(
+                'phone', null, [
+                    'label' => 'Votre numéro de téléphone',
+                    'mapped' => false
+                ]
+            )
+            ->add(
+                'pathology', EntityType::class, [
+                    'class' => Speciality::class,
+                    'choice_label' => 'category',
+                    'mapped' => false,
+                    'label' => 'Mon secteur d\'activité: ',
+                    'placeholder' => 'Je ne connais pas ma pathologie'
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class,
+            ]
+        );
     }
 }

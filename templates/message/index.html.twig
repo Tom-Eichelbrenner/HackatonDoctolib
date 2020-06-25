@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row col-5 mx-auto">
+            <h1 class="text-center mx-auto">VOS MESSAGES</h1>
+        </div>
+        {% for request in requests %}
+            {% if request.isViewed == true %}
+                <a href="{{ path('conversation_show', {'id': request.id}) }}" style="color: black">
+                    <div class="row col-10 mx-auto">
+                        <h2>{{ request.doctor.fName }} {{ request.doctor.lName }}</h2>
+                    </div>
+                    <div class="row col-9 mx-auto">
+                        <p>{{ request.topic }}</p>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

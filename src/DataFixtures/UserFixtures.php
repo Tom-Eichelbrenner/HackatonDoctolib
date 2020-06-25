@@ -5,11 +5,10 @@ namespace App\DataFixtures;
 use App\Entity\Doctor;
 use App\Entity\Patient;
 use App\Entity\User;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use PhpParser\Comment\Doc;
+use Faker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
@@ -37,9 +36,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $patient->setFName($faker->firstName);
             $patient->setLName($faker->lastName);
             $patient->setRegion($faker->city);
-            $sex = ['homme','femme'];
-            $patient->setSex($sex[rand(0,1)]);
-            $this->addReference('patient_'.$i, $patient);
+            $sex = ['homme', 'femme'];
+            $patient->setSex($sex[rand(0, 1)]);
+            $this->addReference('patient_' . $i, $patient);
             $manager->persist($patient);
         }
 

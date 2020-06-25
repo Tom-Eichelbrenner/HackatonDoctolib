@@ -3,15 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\AdviceRequest;
-use App\Entity\Patient;
-use App\Entity\User;
 use App\Form\AdviceRequestType;
 use App\Repository\AdviceRequestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/ask")
@@ -24,9 +21,11 @@ class AdviceRequestController extends AbstractController
      */
     public function index(AdviceRequestRepository $adviceRequestRepository): Response
     {
-        return $this->render('advice_request/index.html.twig', [
-            'advice_requests' => $adviceRequestRepository->findAll(),
-        ]);
+        return $this->render(
+            'advice_request/index.html.twig', [
+                'advice_requests' => $adviceRequestRepository->findAll(),
+            ]
+        );
     }
 
     /**
@@ -41,8 +40,8 @@ class AdviceRequestController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user =$this->getUser();
-            $patient=$user->getPatient();
+            $user = $this->getUser();
+            $patient = $user->getPatient();
             $adviceRequest->setPatient($patient);
             $entityManager->persist($adviceRequest);
             $entityManager->flush();
@@ -50,10 +49,12 @@ class AdviceRequestController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('advice_request/new.html.twig', [
-            'advice_request' => $adviceRequest,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'advice_request/new.html.twig', [
+                'advice_request' => $adviceRequest,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -62,13 +63,17 @@ class AdviceRequestController extends AbstractController
     public function show(AdviceRequestRepository $adviceRequestRepository): Response
     {
         $user = $this->getUser();
-        $doctor= $user->getDoctor();
-        $request = $adviceRequestRepository->findBy([
-            'pathology' => $doctor->getSpeciality()
-        ]);
-        return $this->render('advice_request/show.html.twig', [
-            'advice_request' => $request,
-        ]);
+        $doctor = $user->getDoctor();
+        $request = $adviceRequestRepository->findBy(
+            [
+                'pathology' => $doctor->getSpeciality()
+            ]
+        );
+        return $this->render(
+            'advice_request/show.html.twig', [
+                'advice_request' => $request,
+            ]
+        );
     }
 
     /**
@@ -85,10 +90,12 @@ class AdviceRequestController extends AbstractController
             return $this->redirectToRoute('advice_request_index');
         }
 
-        return $this->render('advice_request/edit.html.twig', [
-            'advice_request' => $adviceRequest,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'advice_request/edit.html.twig', [
+                'advice_request' => $adviceRequest,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -96,7 +103,7 @@ class AdviceRequestController extends AbstractController
      */
     public function delete(Request $request, AdviceRequest $adviceRequest): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$adviceRequest->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $adviceRequest->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($adviceRequest);
             $entityManager->flush();
