@@ -14,7 +14,16 @@
 <!-- Navbar -->
 {% include '_navbar.html.twig' %}
 <!-- Navbar -->
-<div class="container-fluid px-2 py-5 p-lg-5 my-5" id="main">
+
+
+
+
+<div class="container-fluid px-2 py-5  p-lg-5 {{ app.session.flashBag.peek('succes')|length>0?'':'my-5' }}"id="main">
+    {% for message in app.flashes('succes') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% block body %}{% endblock %}
 </div>
 <!-- Footer -->
