@@ -2,38 +2,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-light bg-primary justify-content-between">
-    <a class="navbar-brand" href="/">
-        <img src="/build/images/eir.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Eir Advices
-    </a>
-    <a href="#">
-        <svg class="bi bi-chat-square-dots-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
-             xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-        </svg>
-    </a>
-</nav>
+{% include '_navbar.html.twig' %}
 <!-- Navbar -->
 <div class="container-fluid p-5">
 {% block body %}{% endblock %}
 </div>
 <!-- Footer -->
-<footer class="page-footer mt-auto bg-primary">
-
-    <div class="footer-copyright text-center py-3">Copyright © 2020 EirAdvices
-        <a class="ml-5 mr-5" href="#">Contact</a>
-        <a class="ml-5 mr-5" href="#">Mentions légales</a>
-    </div>
-
-</footer>
+{% include '_footer.html.twig' %}
 <!-- Footer -->
 
 {% block javascripts %}

@@ -22,6 +22,10 @@ class RegistrationController extends AbstractController
      * @Route("/register", name="app_register")
      */
     public function register(){
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+
         if (isset($_POST['submit'])){
             if ($_POST['role'] === 'doctor'){
                 return $this->redirectToRoute('app_register_doctor');
