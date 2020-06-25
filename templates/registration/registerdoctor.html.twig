@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+    <h1 class="col-3 mx-auto text-center">M'inscrire en tant que médecin</h1>
+
+    <div class="col-8 mx-auto">
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.fName) }}
+        {{ form_row(registrationForm.lName) }}
+        {{ form_row(registrationForm.region) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.phone) }}
+        {{ form_row(registrationForm.pathology) }}
+
+        <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

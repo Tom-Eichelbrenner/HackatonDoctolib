@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row mx-auto my-5">
+            <h3 class="text-center mx-auto">{% if app.user.doctor == null %}{{ conv.doctor.fName }} {{ conv.doctor.lName }}{% else %}{{ conv.patient.fName }} {{ conv.patient.lName }}{% endif %}</h3>
+        </div>
+        <div class="container-fluid mx-auto col-7">
+            {% for message in messages %}
+                {% if message.doctor != null %}
+                    <div class="row col-3">
+                        <h4>{{ message.doctor.lName }} {{ message.doctor.fName }} : </h4>
+                    </div>
+                    <div class="row ">
+                        <p>{{ message.message }}</p>
+                    </div>
+                {% else %}
+                    <div class="row col-3">
+                        <h4>{{ message.patient.lName }} {{ message.patient.fName }} : </h4>
+                    </div>
+                    <div class="row">
+                        <p>{{ message.message }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row col-7 mx-auto">
+            <form class="mx-auto" action="" method="post">
+                <input type="text" name="message" id="message" class="message">
+                <button type="submit" id="submit" class="submit" name="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

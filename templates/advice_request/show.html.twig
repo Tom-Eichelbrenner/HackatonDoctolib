@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Requests{% endblock %}
+
+{% block body %}
+        <div class="card mx-auto" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ advice.patient.lname }} {{ advice.patient.fname }}</h5>
+                <p class="card-text">{{ advice.topic }}</p>
+                <p class="card-text">{{ advice.problem }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Maladies connues : {{ advice.patient.disease }}</li>
+                <li class="list-group-item">{{ advice.pathology.category }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="{{ path('answer',{'id': advice.id} )}}" class="card-link">Répondre a ce patient</a>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+        {{ form_row(form.fName) }}
+        {{ form_row(form.lName) }}
+        {{ form_row(form.birthDate) }}
+        {{ form_row(form.region) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(form.sexe) }}
+        {{ form_row(form.pathology) }}
+
+<button type="submit" class="btn">Update</button>
+{{ form_end(form) }}

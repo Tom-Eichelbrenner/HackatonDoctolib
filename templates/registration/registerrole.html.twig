@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1 class="col-3 mx-auto text-center">M'inscrire</h1>
+
+    <div class="col-3 my-5 mx-auto">
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Je suis : </label>
+                <select name="role" class="form-control" id="exampleFormControlSelect1">
+                    <option value="patient">Un patient</option>
+                    <option value="doctor">Un médecin</option>
+                </select>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
