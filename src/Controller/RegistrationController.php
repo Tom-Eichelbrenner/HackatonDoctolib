@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
         if (isset($_POST['submit'])){
             if ($_POST['role'] === 'doctor'){
                 return $this->redirectToRoute('app_register_doctor');
-            }else{
+            } else {
                 return $this->redirectToRoute('app_register_patient');
             }
         }

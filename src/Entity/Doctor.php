@@ -56,9 +56,15 @@ class Doctor
      */
     private $region;
 
+    /**
+     * @ORM\OneToMany(targetEntity=AdviceRequest::class, mappedBy="doctor")
+     */
+    private $adviceRequests;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->adviceRequests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -170,6 +176,37 @@ class Doctor
     public function setRegion(?Region $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdviceRequest[]
+     */
+    public function getAdviceRequests(): Collection
+    {
+        return $this->adviceRequests;
+    }
+
+    public function addAdviceRequest(AdviceRequest $adviceRequest): self
+    {
+        if (!$this->adviceRequests->contains($adviceRequest)) {
+            $this->adviceRequests[] = $adviceRequest;
+            $adviceRequest->setDoctor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdviceRequest(AdviceRequest $adviceRequest): self
+    {
+        if ($this->adviceRequests->contains($adviceRequest)) {
+            $this->adviceRequests->removeElement($adviceRequest);
+            // set the owning side to null (unless already changed)
+            if ($adviceRequest->getDoctor() === $this) {
+                $adviceRequest->setDoctor(null);
+            }
+        }
 
         return $this;
     }

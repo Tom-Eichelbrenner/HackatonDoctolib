@@ -7,10 +7,9 @@ use App\Entity\Patient;
 use App\Entity\Region;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use PhpParser\Comment\Doc;
+use Faker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
