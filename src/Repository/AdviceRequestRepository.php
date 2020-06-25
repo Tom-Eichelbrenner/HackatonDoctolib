@@ -19,32 +19,23 @@ class AdviceRequestRepository extends ServiceEntityRepository
         parent::__construct($registry, AdviceRequest::class);
     }
 
-    // /**
-    //  * @return AdviceRequest[] Returns an array of AdviceRequest objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return AdviceRequest[] Returns an array of AdviceRequest objects
+     */
+
+    public function findViewed($path, $viewed)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('a.pathology = :pathology')
+            ->andWhere('a.isViewed = :viewed')
+            ->setParameter('pathology', $path)
+            ->setParameter('viewed', $viewed)
             ->orderBy('a.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?AdviceRequest
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+
 }

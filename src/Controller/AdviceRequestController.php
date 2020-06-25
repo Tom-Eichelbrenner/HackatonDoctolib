@@ -7,7 +7,6 @@ use App\Entity\Patient;
 use App\Entity\User;
 use App\Form\AdviceRequestType;
 use App\Repository\AdviceRequestRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,11 +69,12 @@ class AdviceRequestController extends AbstractController
     {
         $user = $this->getUser();
         $doctor= $user->getDoctor();
-        $request = $adviceRequestRepository->findBy([
-            'pathology' => $doctor->getSpeciality()
-        ]);
+        $requests = $adviceRequestRepository->findViewed($doctor->getSpeciality(), false);
+        shuffle($requests);
+        dump($requests);
+        $request = $requests[1];
         return $this->render('advice_request/show.html.twig', [
-            'advice_request' => $request,
+            'advice' => $request,
         ]);
     }
 
