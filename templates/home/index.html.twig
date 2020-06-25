@@ -9,7 +9,7 @@
                 <h2 class="ml-5">Mes informations</h2>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><h4>{{ app.user.patient.lname }} {{ app.user.patient.fname }}</h4></li>
-                    <li class="list-group-item">Région : {{ app.user.patient.region }}</li>
+                    <li class="list-group-item">Région : {{ app.user.patient.region.name }}</li>
                     <li class="list-group-item">Pathologies connues : {{ app.user.patient.disease }}</li>
                     <li class="list-group-item">E-mail : {{ app.user.email }}</li>
                     <li class="list-group-item"><a href="{{ path('patient_edit', {'id' : app.user.patient.id}) }}"
@@ -44,7 +44,7 @@
                 <h2 class="ml-5">Mes informations</h2>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><h4>{{ app.user.doctor.lname }} {{ app.user.doctor.fname }}</h4></li>
-                    <li class="list-group-item">Région : {{ app.user.doctor.region }}</li>
+                    <li class="list-group-item">Région : {{ app.user.doctor.region.name }}</li>
                     <li class="list-group-item">Téléphone : {{ app.user.doctor.phone }}</li>
                     <li class="list-group-item">E-mail : {{ app.user.email }}</li>
                     <li class="list-group-item"><a href="{{ path('patient_edit', {'id' : app.user.doctor.id}) }}"
