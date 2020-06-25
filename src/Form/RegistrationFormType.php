@@ -58,11 +58,15 @@ class RegistrationFormType extends AbstractType
                 ]
             )
             ->add(
-                'birthDate', BirthdayType::class, [
-                'label' => 'Date de naissance',
+                'birthDate', DateType::class, [
                 'mapped' => false,
-                ]
-            )
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => [
+                    'class' => "js-datepicker",
+                    'data-date-format' => "yyyy/mm/dd",
+                ],
+            ])
             ->add(
                 'region', EntityType::class, [
                     'class' => Region::class,
