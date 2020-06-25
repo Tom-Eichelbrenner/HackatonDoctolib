@@ -18,7 +18,7 @@ class AdviceRequestFixtures extends Fixture implements DependentFixtureInterface
 
         $advice = new AdviceRequest();
         $advice->setIsViewed(true);
-        $rand = rand(1, 50);
+        $rand = rand(1, 56);
         $advice->setPathology($this->getReference('speciality_'.$rand));
         $advice->setPatient($this->getReference('patient_25'));
         $advice->setProblem($faker->text);
@@ -38,7 +38,15 @@ class AdviceRequestFixtures extends Fixture implements DependentFixtureInterface
             }
             $manager->persist($message);
         }
-
+        for ($i=1;$i<=500;$i++){
+            $advice=new AdviceRequest();
+            $advice->setPathology($this->getReference('speciality_'.rand(1,56)));
+            $advice->setIsViewed(false);
+            $advice->setPatient($this->getReference('patient_'.rand(1,300)));
+            $advice->setProblem($faker->text);
+            $advice->setTopic($faker->word);
+            $manager->persist($advice);
+        }
         $manager->flush();
     }
 

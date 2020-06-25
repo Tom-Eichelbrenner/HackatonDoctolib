@@ -24,7 +24,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for ($i=1;$i<=30;$i++){
+        for ($i=1;$i<=300;$i++){
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_PATIENT']);
@@ -43,7 +43,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($patient);
         }
 
-        for ($i=1;$i<=30;$i++){
+        for ($i=1;$i<=500;$i++){
             $user = new User();
             $user->setEmail($faker->email);
             $user->setRoles(['ROLE_DOCTOR']);
