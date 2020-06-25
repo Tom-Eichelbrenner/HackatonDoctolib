@@ -96,18 +96,6 @@ class Doctor
         return $this;
     }
 
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function setRegion(string $region): self
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
     public function getPhone(): ?string
     {
         return $this->phone;
