@@ -24,9 +24,15 @@ class AdviceRequestController extends AbstractController
      */
     public function index(AdviceRequestRepository $adviceRequestRepository): Response
     {
-        return $this->render('advice_request/index.html.twig', [
-            'advice_requests' => $adviceRequestRepository->findAll(),
-        ]);
+        $userRole = $this->getUser()->getRoles();
+
+        if (in_array("ROLE_DOCTOR", $userRole)) {
+            return $this->redirectToRoute('advice_request_show');
+        }
+        if (in_array("ROLE_PATIENT", $userRole)) {
+            return $this->redirectToRoute('advice_request_new');
+        }
+        return $this->redirectToRoute('home');
     }
 
     /**
