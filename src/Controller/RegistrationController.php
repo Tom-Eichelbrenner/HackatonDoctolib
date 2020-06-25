@@ -17,6 +17,21 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
+
+    /**
+     * @Route("/register", name="app_register")
+     */
+    public function register(){
+        if (isset($_POST['submit'])){
+            if ($_POST['role'] === 'doctor'){
+                return $this->redirectToRoute('app_register_doctor');
+            }else{
+                return $this->redirectToRoute('app_register_patient');
+            }
+        }
+
+        return $this->render('registration/registerrole.html.twig');
+    }
     /**
      * @Route("/register/patient", name="app_register_patient")
      */
