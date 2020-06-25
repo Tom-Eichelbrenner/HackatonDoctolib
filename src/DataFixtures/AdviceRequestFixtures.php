@@ -24,7 +24,7 @@ class AdviceRequestFixtures extends Fixture implements DependentFixtureInterface
         $advice->setProblem($faker->text);
         $advice->setTopic($faker->word);
         $manager->persist($advice);
-        $advice->setDdoctor($this->getReference('doctor_25'));
+        $advice->setDoctor($this->getReference('doctor_25'));
         for ($o=1;$o<=20;$o++){
             $message = new Messages();
             $date = new DateTime();
