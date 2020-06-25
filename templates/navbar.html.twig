@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-primary justify-content-between">
+    <a class="navbar-brand" href="{{ path('home') }}">
+        <img src="{{ asset('build/images/eir.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Eir rune">
+        Eir Advices
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            {% if is_granted('ROLE_PATIENT') %}
+                <a class="nav-item nav-link" href="{{ path('home') }}">Mon compte</a>
+                <a class="nav-item nav-link" href="{{ path('advice_request_new') }}">Demander un conseil</a>
+                <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+            {% elseif is_granted('ROLE_DOCTOR') %}
+                <a class="nav-item nav-link" href="{{ path('home') }}">Mon compte</a>
+                <a class="nav-item nav-link" href="{{ path('advice_request_show') }}">Voir les demandes</a>
+                <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+            {% else %}
+                <a class="nav-item nav-link" href="/register">S'inscrire</a>
+                <a class="nav-item nav-link" href="/login">Se connecter</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
