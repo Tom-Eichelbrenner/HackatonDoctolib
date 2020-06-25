@@ -3,7 +3,6 @@
 /** Importing Bootstrap functions and variables */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
-
 $theme-colors: (
         "primary":    $primary-color,
         "secondary":  $secondary-color,
@@ -17,6 +16,194 @@ $theme-colors: (
 #main{
   min-height: 84vh;
 }
+
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+#msform fieldset .form-card {
+  background: white;
+  border: 0 none;
+  border-radius: 0px;
+  padding: 20px 40px 30px 40px;
+  box-sizing: border-box;
+  width: 94%;
+  margin: 0 3% 20px 3%;
+  position: relative;
+}
+
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+#msform fieldset .form-card {
+  text-align: left;
+  color: #9E9E9E;
+}
+
+#msform input,
+#msform textarea {
+  padding: 0px 8px 4px 8px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#msform input:focus,
+#msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none;
+  font-weight: bold;
+  border-bottom: 2px solid $primary-color;
+  outline-width: 0;
+}
+
+#msform .action-button {
+  width: 100px;
+  background: $primary-color;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px $primary-color;
+}
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
+
+select.list-dt {
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #ccc;
+  padding: 2px 5px 3px 5px;
+  margin: 2px;
+}
+
+select.list-dt:focus {
+  border-bottom: 2px solid $primary-color;
+}
+
+.card {
+  z-index: 0;
+  border: none;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.fs-title {
+  font-size: 25px;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+#progressbar {
+  margin: 0 0 30px 0;
+  overflow: hidden;
+  color: lightgrey;
+  li {
+    list-style-type: none;
+    width: 20%;
+    float: left;
+    position: relative;
+
+
+  }
+  li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    //display: block;
+    //font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    //margin: 0 auto 10px auto;
+    padding: 2px;
+    margin: 2px;
+    font-size: 2em;
+    font-weight: 900;
+    font-family: "Font Awesome\ 5 Free";
+    display: inline-block;
+  }
+  li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+  }
+  li.active {
+    color: $primary-color;
+  }
+  li.active:before, li.active:after {
+    background: $primary-color;
+  }
+  li#disclaimer:before {
+    content: "\f05a";
+  }
+  li#contact:before {
+    content: "\f1fa";
+  }
+  li#personal:before {
+    content: "\f007";
+  }
+  li#pathology:before {
+    content: "\f0f1";
+  }
+  li#validation:before {
+    content: "\f058";
+  }
+}
+
 body{
   background: radial-gradient(circle at 99% 0%, rgba(235, 235, 235,0.03) 0%, rgba(235, 235, 235,0.03) 50%,rgba(142, 142, 142,0.03) 50%, rgba(142, 142, 142,0.03) 100%),radial-gradient(circle at 84% 89%, rgba(229, 229, 229,0.03) 0%, rgba(229, 229, 229,0.03) 50%,rgba(1, 1, 1,0.03) 50%, rgba(1, 1, 1,0.03) 100%),radial-gradient(circle at 89% 20%, rgba(219, 219, 219,0.03) 0%, rgba(219, 219, 219,0.03) 50%,rgba(38, 38, 38,0.03) 50%, rgba(38, 38, 38,0.03) 100%),radial-gradient(circle at 90% 0%, rgba(48, 48, 48,0.03) 0%, rgba(48, 48, 48,0.03) 50%,rgba(109, 109, 109,0.03) 50%, rgba(109, 109, 109,0.03) 100%),linear-gradient(170deg, rgb(0,96,255),rgb(0,0,0));}
 nav{
@@ -29,3 +216,4 @@ footer{
   background-color: #343739;
 }
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";

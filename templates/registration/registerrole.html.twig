@@ -3,18 +3,22 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1 class="col-3 mx-auto text-center text-white">M'inscrire</h1>
+    <div class="row no-gutters justify-content-center">
+        <div class="col-11">
+            <h1 class="mx-auto text-center">M'inscrire</h1>
+        </div>
 
-    <div class="col-3 my-5 mx-auto text-white">
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Je suis : </label>
-                <select name="role" class="form-control" id="exampleFormControlSelect1">
-                    <option value="patient">Un patient</option>
-                    <option value="doctor">Un médecin</option>
-                </select>
-            </div>
-            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="col-11 col-lg-3 my-5 mx-auto">
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Je suis : </label>
+                    <select name="role" class="form-control" id="exampleFormControlSelect1">
+                        <option value="patient">Un patient</option>
+                        <option value="doctor">Un médecin</option>
+                    </select>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
