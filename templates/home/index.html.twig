@@ -5,35 +5,47 @@
 {% block body %}
     {% if is_granted('ROLE_PATIENT') %}
         <div class="row">
-            <div class="card bg-dark text-white col-6 align-self-center" style='width: 30rem'>
-                <h2 class="ml-5 p-2">Mes informations</h2>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-dark"><h4>{{ app.user.patient.lname }} {{ app.user.patient.fname }}</h4></li>
-                    <li class="list-group-item bg-dark">Région : {{ app.user.patient.region.name }}</li>
-                    <li class="list-group-item bg-dark">Pathologies connues : {{ app.user.patient.disease }}</li>
-                    <li class="list-group-item bg-dark">E-mail : {{ app.user.email }}</li>
-                    <li class="list-group-item bg-dark"><a href="{{ path('patient_edit', {'id' : app.user.patient.id}) }}"
-                                                   class="btn btn-primary">Modifier mes informations</a></li>
-                </ul>
-            </div>
-            <div class="col-6">
-                <h2 class="ml-5 text-white"><strong>Mes demandes</strong></h2>
-                <div class="row ml-5">
-                    <a href="{{ path('ask_new') }}" class="btn btn-primary">Demander conseil</a>
+            <div class="container-fluid col-6">
+                <div class="card bg-dark text-white position-fixed" style='width: 30rem'>
+                    <h2 class="ml-5 p-2">Mes informations</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-dark">
+                            <h4>{{ app.user.patient.lname }} {{ app.user.patient.fname }}</h4></li>
+                        <li class="list-group-item bg-dark">Région : {{ app.user.patient.region.name }}</li>
+                        <li class="list-group-item bg-dark">Pathologies connues : {{ app.user.patient.disease }}</li>
+                        <li class="list-group-item bg-dark">E-mail : {{ app.user.email }}</li>
+                        <li class="list-group-item bg-dark"><a
+                                    href="{{ path('patient_edit', {'id' : app.user.patient.id}) }}"
+                                    class="btn btn-primary">Modifier mes informations</a></li>
+                    </ul>
                 </div>
-                {% for advice in app.user.patient.adviceRequests %}
-
-                    <div class="card bg-dark text-white mb-3 mt-3" style='width: 30rem'>
-                        <div class="card-header">
-                            <h3>Sujet : {{ advice.topic }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Spécialité médicale : {{ advice.pathology.category }}</p>
-                            <p class="card-text">Description : {{ advice.problem }}</p>
-                            {% include "/advice_request/_delete_form.html.twig" %}
-                        </div>
+            </div>
+            <div class="container-fluid col-6">
+                <div class=>
+                    <div class="row ml-5">
+                        <a href="{{ path('ask_new') }}" class="btn bg-info text-white p-4">
+                            <strong>J'ai besoin d'être conseillé par un médecin</strong></a>
                     </div>
-                {% endfor %}
+                    <hr class="my-4 w-50 ml-5"/>
+                    <div class="text-white ">
+                        <h2>Liste de mes demandes crées</h2>
+                        <p>Vous retrouvez ici la liste de vos demandes, si vous attendez une réponse,</p>
+                        <p>n'hésitez pas à venir les consuler régulièrement!</p>
+                    </div>
+                    {% for advice in app.user.patient.adviceRequests %}
+
+                        <div class="card bg-dark text-white mb-3 mt-3" style='width: 30rem'>
+                            <div class="card-header">
+                                <h3>Sujet : {{ advice.topic }}</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Spécialité médicale : {{ advice.pathology.category }}</p>
+                                <p class="card-text">Description : {{ advice.problem }}</p>
+                                {% include "/advice_request/_delete_form.html.twig" %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 
@@ -43,19 +55,26 @@
             <div class="card bg-dark text-white col-6">
                 <h2 class="ml-5">Mes informations</h2>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-dark"><h4>{{ app.user.doctor.lname }} {{ app.user.doctor.fname }}</h4></li>
+                    <li class="list-group-item bg-dark"><h4>{{ app.user.doctor.lname }} {{ app.user.doctor.fname }}</h4>
+                    </li>
                     <li class="list-group-item bg-dark">Région : {{ app.user.doctor.region.name }}</li>
                     <li class="list-group-item bg-dark">Téléphone : {{ app.user.doctor.phone }}</li>
                     <li class="list-group-item bg-dark">E-mail : {{ app.user.email }}</li>
                     <li class="list-group-item bg-dark"><a href="{{ path('doctor_edit', {'id' : app.user.doctor.id}) }}"
-                                                   class="btn btn-primary">Modifier mes informations</a></li>
+                                                           class="btn btn-primary">Modifier mes informations</a></li>
                 </ul>
             </div>
         </div>
     {% else %}
         <div class="d-flex  justify-content-center">
-            <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2">Me connecter</a>
-            <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2">M'inscrire</a>
+            <div class=" text-white m-5 p-2 rounded">
+                <p>J'ai déja un compte:</p>
+                <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2 w-100">Me connecter</a>
+            </div>
+            <div class=" text-white m-5 p-2 rounded ">
+                <p>Je n'ai pas encore de compte:</p>
+                <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2 w-100">M'inscrire</a>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

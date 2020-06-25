@@ -31,7 +31,6 @@ class AdviceRequestRepository extends ServiceEntityRepository
             ->setParameter('pathology', $path)
             ->setParameter('viewed', $viewed)
             ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }
