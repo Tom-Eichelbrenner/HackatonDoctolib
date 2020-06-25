@@ -69,11 +69,10 @@ class AdviceRequestController extends AbstractController
     {
         $user = $this->getUser();
         $doctor = $user->getDoctor();
-        $aaaaa = [];
         $blacklisted = $doctor->getBlacklist()->toArray();
         $requests = $adviceRequestRepository->findViewed($doctor->getSpeciality(), false);
         shuffle($requests);
-        $request = 1;
+        dump($requests);
         foreach ($requests as $item) {
             if (!in_array($item, $blacklisted)) {
                 $request = $item;
