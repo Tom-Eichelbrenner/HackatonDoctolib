@@ -6,23 +6,80 @@
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
-    {% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
-    <h1 class="col-3 mx-auto text-center">M'inscrire en tant que patient</h1>
-
-    <div class="col-8 mx-auto">
-        {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.fName) }}
-        {{ form_row(registrationForm.lName) }}
-        {{ form_row(registrationForm.birthDate) }}
-        {{ form_row(registrationForm.region) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.sexe) }}
-        {{ form_row(registrationForm.pathology) }}
-
-        <button type="submit" class="btn">Register</button>
-        {{ form_end(registrationForm) }}
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-11 col-lg-8 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    {{ form_start(registrationForm, {'attr': {'id': 'msform'}}) }}
+                    <h2><strong>Je m'inscris</strong></h2>
+                    <div class="row">
+                        <div class="col-12 mx-0">
+                                <!-- progressbar -->
+                                <ul id="progressbar" class="p-0">
+                                    <li id="disclaimer" class="active"><strong class="d-none d-lg-block">Avertissements</strong></li>
+                                    <li id="contact"><strong class="d-none d-lg-block">Informations de contact</strong></li>
+                                    <li id="personal"><strong class="d-none d-lg-block">Informations personnelles</strong></li>
+                                    <li id="pathology"><strong class="d-none d-lg-block">Maladies connues</strong></li>
+                                    <li id="validation"><strong class="d-none d-lg-block">Validation</strong></li>
+                                </ul> <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Avertissements</h2>
+                                        <p>
+                                            Lorem ipsum
+                                        </p>
+                                    </div>
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Informations de contact</h2>
+                                        {{ form_row(registrationForm.region) }}
+                                        {{ form_row(registrationForm.email) }}
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Informations personnelles</h2>
+                                        {{ form_row(registrationForm.fName) }}
+                                        {{ form_row(registrationForm.lName) }}
+                                        {{ form_row(registrationForm.sexe) }}
+                                        {{ form_row(registrationForm.birthDate) }}
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Maladies connues</h2>
+                                        {{ form_row(registrationForm.pathology) }}
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Validation</h2>
+                                        {{ form_row(registrationForm.plainPassword, {
+                                            label: 'Mot de passe'
+                                        }) }}
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <button type="submit" class="btn btn-primary">Je valide mon inscription</button>
+                                </fieldset>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('datepicker') }}
+    {{ encore_entry_script_tags('registration') }}
 {% endblock %}
