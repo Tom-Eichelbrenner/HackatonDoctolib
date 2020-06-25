@@ -47,7 +47,7 @@
                     <li class="list-group-item">Région : {{ app.user.doctor.region.name }}</li>
                     <li class="list-group-item">Téléphone : {{ app.user.doctor.phone }}</li>
                     <li class="list-group-item">E-mail : {{ app.user.email }}</li>
-                    <li class="list-group-item"><a href="{{ path('patient_edit', {'id' : app.user.doctor.id}) }}"
+                    <li class="list-group-item"><a href="{{ path('doctor_edit', {'id' : app.user.doctor.id}) }}"
                                                    class="btn btn-primary">Modifier mes informations</a></li>
                 </ul>
             </div>

@@ -66,7 +66,7 @@ class DoctorRegistrationFormType extends AbstractType
                 'choice_label' => 'category',
                 'mapped'=>false,
                 'label' => 'Mon secteur d\'activité: ',
-                'placeholder' => 'Je ne connais pas ma pathologie'
+                'placeholder' => 'Sélectionnez une spécialité'
             ]);
     }
 

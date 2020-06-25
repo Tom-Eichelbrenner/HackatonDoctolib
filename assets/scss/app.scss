@@ -14,5 +14,7 @@ $theme-colors: (
         "light":      $light,
         "dark":       $dark,
 ); // Array of Bootstrap colors
-
+#main{
+  min-height: 84vh;
+}
 @import "~bootstrap/scss/bootstrap";
