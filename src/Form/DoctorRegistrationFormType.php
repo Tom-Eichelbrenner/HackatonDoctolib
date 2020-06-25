@@ -2,20 +2,18 @@
 
 namespace App\Form;
 
+use App\Entity\Doctor;
+use App\Entity\Speciality;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class DoctorRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -43,58 +41,35 @@ class RegistrationFormType extends AbstractType
                     ],
                 ]
             )
-            ->add(
-                'fName', null, [
+            ->add('fName', null, [
                 'label' => 'Prénom',
                 'mapped' => false
-                ]
-            )
-            ->add(
-                'lName', null, [
+            ])
+            ->add('lName', null, [
                 'label' => 'Nom',
                 'mapped' => false
-                ]
-            )
-            ->add(
-                'birthDate', BirthdayType::class, [
-                'label' => 'Date de naissance',
+            ])
+            ->add('region', null, [
                 'mapped' => false,
-                ]
-            )
-            ->add(
-                'region', null, [
-                'label' => 'Région',
+                'label' => 'Votre région'
+            ])
+            ->add('phone', null, [
+                'label' => 'Votre numéro de téléphone',
                 'mapped' => false
-                ]
-            )
-            ->add(
-                'sexe', ChoiceType::class, [
-                'choices' => [
-                    'Un homme' => 'Homme',
-                    'Une femme' => 'Femme',
-                    'Un helicoptère d\'attaque' => 'Un helicoptère d\'attaque',
-                    'Une teub géante' => 'Une teub géante',
-                ],
-                'label' => 'Je suis : ',
-                'mapped' => false]
-            )
-        //            ->add('pathology', null,
-        //                'label'    => "On m'a diagnostiqué une (ou plusieurs) maladies.",
-        //                'mapped'=>false)
-            ->add(
-                'pathology', null, [
-                'label' => "Mes maladies diagnostiquées (ne pas remplir si nul)",
-                'mapped' => false
-                ]
-            );
+            ])
+            ->add('pathology', EntityType::class, [
+                'class' => Speciality::class,
+                'choice_label' => 'category',
+                'mapped'=>false,
+                'label' => 'Mon secteur d\'activité: ',
+                'placeholder' => 'Je ne connais pas ma pathologie'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            [
+        $resolver->setDefaults([
             'data_class' => User::class,
-            ]
-        );
+        ]);
     }
 }

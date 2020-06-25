@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Doctor;
 use App\Entity\Patient;
 use App\Entity\User;
+use App\Form\DoctorRegistrationFormType;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +18,9 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/register/patient", name="app_register_patient")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
+    public function registerpatient(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
     {
         $user = new User();
         $patient = new Patient();
@@ -56,8 +58,54 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render(
-            'registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+            'registration/registerpatient.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]
+        );
+    }
+    /**
+     * @Route("/register/doctor", name="app_register_doctor")
+     */
+    public function registerdoctor(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
+    {
+        $user = new User();
+        $doctor = new Doctor();
+        $form = $this->createForm(DoctorRegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $user->setRoles(['ROLE_DOCTOR']);
+            $doctor->setFName($form->get('fName')->getData());
+            $doctor->setLName($form->get('lName')->getData());
+            $doctor->setRegion($form->get('region')->getData());
+            $doctor->setPhone($form->get('phone')->getData());
+            $doctor->setSpeciality($form->get('pathology')->getData());
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $user->setDoctor($doctor);
+            $entityManager->persist($user);
+            $entityManager->persist($doctor);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
+        }
+
+        return $this->render(
+            'registration/registerdoctor.html.twig', [
+                'registrationForm' => $form->createView(),
             ]
         );
     }
