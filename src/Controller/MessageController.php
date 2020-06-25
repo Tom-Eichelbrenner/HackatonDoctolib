@@ -24,12 +24,18 @@ class MessageController extends AbstractController
 
         if ($this->getUser()->getPatient() != null) {
             $patient = $this->getUser()->getPatient();
+            $active = [];
             $requests = $patient->getAdviceRequests();
+            foreach ($requests as $request){
+                if ($request->getDoctor() !=null){
+                    array_push($active,$request);
+                }
+            }
 
             return $this->render('message/indexpatient.html.twig', [
                 'controller_name' => 'MessageController',
                 'patient' => $patient,
-                'requests' => $requests
+                'requests' => $active
             ]);
         } else {
             $doctor = $this->getUser()->getDoctor();

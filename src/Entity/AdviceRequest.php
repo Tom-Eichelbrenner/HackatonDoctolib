@@ -55,9 +55,15 @@ class AdviceRequest
      */
     private $doctor;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Doctor::class, mappedBy="blacklist")
+     */
+    private $blacklisted;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->blacklisted = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +170,34 @@ class AdviceRequest
     public function setDoctor(?Doctor $doctor): self
     {
         $this->doctor = $doctor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Doctor[]
+     */
+    public function getBlacklisted(): Collection
+    {
+        return $this->blacklisted;
+    }
+
+    public function addBlacklisted(Doctor $blacklisted): self
+    {
+        if (!$this->blacklisted->contains($blacklisted)) {
+            $this->blacklisted[] = $blacklisted;
+            $blacklisted->addBlacklist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlacklisted(Doctor $blacklisted): self
+    {
+        if ($this->blacklisted->contains($blacklisted)) {
+            $this->blacklisted->removeElement($blacklisted);
+            $blacklisted->removeBlacklist($this);
+        }
 
         return $this;
     }
