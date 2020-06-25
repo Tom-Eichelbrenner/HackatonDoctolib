@@ -10,7 +10,7 @@
         <div class="navbar-nav">
             {% if is_granted('ROLE_PATIENT') %}
                 <a class="nav-item nav-link" href="{{ path('home') }}">Mon compte</a>
-                <a class="nav-item nav-link" href="{{ path('advice_request_new') }}">Demander un conseil</a>
+                <a class="nav-item nav-link" href="{{ path('ask_new') }}">Demander un conseil</a>
                 <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
             {% elseif is_granted('ROLE_DOCTOR') %}
                 <a class="nav-item nav-link" href="{{ path('home') }}">Mon compte</a>
