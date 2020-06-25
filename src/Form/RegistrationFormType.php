@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Region;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -62,9 +64,12 @@ class RegistrationFormType extends AbstractType
                 ]
             )
             ->add(
-                'region', null, [
-                'label' => 'Région',
-                'mapped' => false
+                'region', EntityType::class, [
+                    'class' => Region::class,
+                    'choice_label' => 'name',
+                    'by_reference' => false,
+                    'label' => 'Région',
+                    'mapped' => false
                 ]
             )
             ->add(

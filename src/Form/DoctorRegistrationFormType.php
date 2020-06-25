@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Doctor;
+use App\Entity\Region;
 use App\Entity\Speciality;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -49,8 +50,11 @@ class DoctorRegistrationFormType extends AbstractType
                 'label' => 'Nom',
                 'mapped' => false
             ])
-            ->add('region', null, [
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
                 'mapped' => false,
+                'choice_label' => 'name',
+                'by_reference' => false,
                 'label' => 'Votre région'
             ])
             ->add('phone', null, [

@@ -35,11 +35,6 @@ class Patient
     private $bdate;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $region;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $disease;
@@ -63,6 +58,12 @@ class Patient
      * @ORM\Column(type="string", length=255)
      */
     private $sex;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class, inversedBy="patients")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
 
     public function __construct()
     {
@@ -110,18 +111,6 @@ class Patient
     public function setBdate(\DateTimeInterface $bdate): self
     {
         $this->bdate = $bdate;
-
-        return $this;
-    }
-
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function setRegion(string $region): self
-    {
-        $this->region = $region;
 
         return $this;
     }
@@ -225,6 +214,18 @@ class Patient
     public function setSex(string $sex): self
     {
         $this->sex = $sex;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
