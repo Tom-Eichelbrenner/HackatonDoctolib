@@ -37,6 +37,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $patient->setFName($faker->firstName);
             $patient->setLName($faker->lastName);
             $patient->setRegion($faker->city);
+            $sex = ['homme','femme'];
+            $patient->setSex($sex[rand(0,1)]);
             $this->addReference('patient_'.$i, $patient);
             $manager->persist($patient);
         }
