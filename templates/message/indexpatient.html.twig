@@ -1,29 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MessageController!{% endblock %}
+{% block title %}BOITE DE RECEPTION{% endblock %}
 
 {% block body %}
     <div class="container-fluid">
         <div class="container-fluid mx-2 my-2">
             <div class="row col-5 mx-auto">
-                <h3 class="mx-auto text-center">Mes échanges</h3>
+                <h1 class="mx-auto text-center my-3">BOITE DE RECEPTION</h1>
             </div>
         </div>
-        {% for request in requests %}
-            <a href="{{ path('conversation_show', {'id': request.id}) }}" style="color: black">
 
-                <div class="col-5 container-fluid border border-dark">
-                    <div class="row">
-                        <h4 class="col-4">Dr {{ request.doctor.lName }}</h4>
-                    </div>
-                    <div class="row">
-                        <p class="col-4">Sujet : {{ request.topic }}</p>
-                    </div>
-                </div>
-            </a>
-            {% else %}
-            <p>Vous n'avez aucune conversation</p>
-        {% endfor %}
+
+        <section>
+            <ul class="slider-list col-6 mx-auto">
+                {% for request in requests %}
+                    <a href="{{ path('conversation_show', {'id': request.id}) }}" style="color: black">
+                        <li class="slide">
+                            <p class="message"><span
+                                        class="subject">{{ request.doctor.fName }} {{ request.doctor.lName }}</span> {{ request.topic }}
+                            </p>
+                            <p class="row ml-auto">{% for message in request.messages %} {% if loop.last %} {{ message.message }}{% endif %} {% endfor %}</p>
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </section>
+
     </div>
 
 {% endblock %}

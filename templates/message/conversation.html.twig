@@ -3,34 +3,82 @@
 {% block title %}Hello MessageController!{% endblock %}
 
 {% block body %}
-    <div class="container col-5 rounded" style="background-color: rgba(255,255,255,0.42)">
-        <div class="row mx-auto my-5">
-            <h3 class="my-3 text-center mx-auto">{% if app.user.doctor == null %}{{ conv.doctor.fName }} {{ conv.doctor.lName }}{% else %}{{ conv.patient.fName }} {{ conv.patient.lName }}{% endif %}</h3>
-        </div>
-        {% for message in messages %}
-            {% if message.doctor != null %}
-                <div class="ml-auto col-5">
-                    <p class="text-right">{{ message.message }}</p>
-
-                </div>
-            {% else %}
-                <div class="mr-auto col-5">
-                    <p class="text-left">{{ message.message }}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
-        <form class="col-8 mx-auto" action="" method="post">
-
-            <div class="row mx-auto border-top d-flex flex-wrap">
-
-                <textarea name="message" id="message" class="form-control message"></textarea>
-                <div class="col-3 mx-auto">
-                    <button type="submit" id="submit" class="btn btn-action" name="submit">Envoyer</button>
-                </div>
-
-            </div>
-        </form>
-
+<div class="container col-5 rounded" style="background-color: rgba(255,255,255,0.42)">
+    <div class="row mx-auto my-5">
+        <h3 class="my-3 text-center mx-auto">{% if app.user.doctor == null %}{{ conv.doctor.fName }} {{ conv.doctor.lName }}{% else %}{{ conv.patient.fName }} {{ conv.patient.lName }}{% endif %}</h3>
     </div>
+    {% for message in messages %}
+    {% if message.doctor != null %}
+    {% if loop.last %}
+    <div class="row mr-2">
+        {% elseif messages[loop.index].patient %}
+        <div class="row mb-5 mr-2">
+            {% else %}
+            <div class="row mr-2">
+                {% endif %}
+                <div class="bubble ml-auto">
+                    <div class="bubble-textd">
+                        <p>{{ message.message }} </p>
+                    </div>
+                </div>
+            </div>
 
-{% endblock %}
+            {#    {% if messages[loop.index].doctor == null %}#}
+            {#    <div class="row mb-5 mr-2">#}
+            {#        {% else %}#}
+            {#        <div class="row mr-2">#}
+            {#            {% endif %}#}
+            {#            <div class="bubble  ml-auto">#}
+            {#                <div class="bubble-textd">#}
+            {#                    <p>{{ message.message }} </p>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#        </div>#}
+            {% else %}
+            {% if loop.last %}
+            <div class="row ml-2">
+                {% elseif messages[loop.index].doctor %}
+                <div class="row mb-5 ml-2">
+                    {% else %}
+                    <div class="row ml-2">
+                        {% endif %}
+                        <div class="bubble">
+                            <div class="bubble-text">
+                                <p>{{ message.message }} </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    <form action="" method="post" class="mt-3 col-12">
+                        <div class="form-row align-items-center mx-auto">
+                            <div class="col-9 mx-auto">
+                                <label class="sr-only" for="inlineFormInput">Name</label>
+                                <input type="text" class="form-control col-12 mb-2" id="inlineFormInput" name="message" placeholder="Votre message içi">
+                            </div>
+
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary mb-2" name="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    {#                    <form class="col-8 mx-auto" action="" method="post">#}
+
+                    {#                        <div class="row mx-auto border-top d-flex flex-wrap">#}
+
+                    {#                            <textarea name="message" id="message" class="form-control message"></textarea>#}
+                    {#                            <div class="col-3 mx-auto">#}
+                    {#                                <button type="submit" id="submit" class="btn btn-action" name="submit">Envoyer</button>#}
+                    {#                            </div>#}
+
+                    {#                        </div>#}
+                    {#                    </form>#}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                {% endblock %}
+

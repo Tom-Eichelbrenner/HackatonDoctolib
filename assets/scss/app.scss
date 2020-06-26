@@ -4,24 +4,77 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/bootstrap-grid";
+
 $theme-colors: (
-        "primary":    $primary-color,
-        "secondary":  $secondary-color,
-        "success":    $success,
-        "info":       $info,
-        "warning":    $warning,
-        "danger":     $danger,
-        "light":      $light,
-        "dark":       $dark,
+        "primary": $primary-color,
+        "secondary": $secondary-color,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark,
 ); // Array of Bootstrap colors
-#main{
+#main {
   min-height: 84vh;
 }
 
-#msform {
-  text-align: center;
-  position: relative;
-  margin-top: 20px;
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,300,600");
+
+.slider-list {
+  list-style:none;
+  overflow: hidden;
+}
+
+.slide {
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.44);
+  padding: 1.5em 1em;
+  border-bottom: 1px solid #278279 ;
+}
+
+.message {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.subject {
+  font-weight: bold;
+  color: #000
+}
+
+
+.bubble-text {
+  background: #DEB841;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 3px;
+  width: 350px;
+}
+
+.bubble-text::after{
+  content:"";
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 20px solid #DEB841;
+  position: absolute;
+}
+.bubble-textd {
+  background: #00BD9D;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 3px;
+  width: 350px;
+}
+
+.bubble-textd::after{
+  content:"";
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 20px solid #00BD9D;
+  position: absolute;
 }
 
 #msform fieldset .form-card {
@@ -147,6 +200,7 @@ select.list-dt:focus {
   margin: 0 0 30px 0;
   overflow: hidden;
   color: lightgrey;
+
   li {
     list-style-type: none;
     width: 20%;
@@ -155,6 +209,7 @@ select.list-dt:focus {
 
 
   }
+
   li:before {
     width: 50px;
     height: 50px;
@@ -172,6 +227,7 @@ select.list-dt:focus {
     font-family: "Font Awesome\ 5 Free";
     display: inline-block;
   }
+
   li:after {
     content: '';
     width: 100%;
@@ -182,48 +238,60 @@ select.list-dt:focus {
     top: 25px;
     z-index: -1;
   }
+
   li.active {
     color: $primary-color;
   }
+
   li.active:before, li.active:after {
     background: $primary-color;
   }
+
   li#disclaimer:before {
     content: "\f05a";
   }
+
   li#contact:before {
     content: "\f1fa";
   }
+
   li#personal:before {
     content: "\f007";
   }
+
   li#pathology:before {
     content: "\f0f1";
   }
+
   li#validation:before {
     content: "\f058";
   }
 }
 
-body{
-  background: radial-gradient(circle at 99% 0%, rgba(235, 235, 235,0.03) 0%, rgba(235, 235, 235,0.03) 50%,rgba(142, 142, 142,0.03) 50%, rgba(142, 142, 142,0.03) 100%),radial-gradient(circle at 84% 89%, rgba(229, 229, 229,0.03) 0%, rgba(229, 229, 229,0.03) 50%,rgba(1, 1, 1,0.03) 50%, rgba(1, 1, 1,0.03) 100%),radial-gradient(circle at 89% 20%, rgba(219, 219, 219,0.03) 0%, rgba(219, 219, 219,0.03) 50%,rgba(38, 38, 38,0.03) 50%, rgba(38, 38, 38,0.03) 100%),radial-gradient(circle at 90% 0%, rgba(48, 48, 48,0.03) 0%, rgba(48, 48, 48,0.03) 50%,rgba(109, 109, 109,0.03) 50%, rgba(109, 109, 109,0.03) 100%),linear-gradient(170deg, rgb(0,96,255),rgb(0,0,0));}
-nav{
+body {
+  background: radial-gradient(circle at 99% 0%, rgba(235, 235, 235, 0.03) 0%, rgba(235, 235, 235, 0.03) 50%, rgba(142, 142, 142, 0.03) 50%, rgba(142, 142, 142, 0.03) 100%), radial-gradient(circle at 84% 89%, rgba(229, 229, 229, 0.03) 0%, rgba(229, 229, 229, 0.03) 50%, rgba(1, 1, 1, 0.03) 50%, rgba(1, 1, 1, 0.03) 100%), radial-gradient(circle at 89% 20%, rgba(219, 219, 219, 0.03) 0%, rgba(219, 219, 219, 0.03) 50%, rgba(38, 38, 38, 0.03) 50%, rgba(38, 38, 38, 0.03) 100%), radial-gradient(circle at 90% 0%, rgba(48, 48, 48, 0.03) 0%, rgba(48, 48, 48, 0.03) 50%, rgba(109, 109, 109, 0.03) 50%, rgba(109, 109, 109, 0.03) 100%), linear-gradient(170deg, rgb(0, 96, 255), rgb(0, 0, 0));
+}
+
+nav {
   background-color: rgba(255, 255, 255, 0.1);
 }
-footer{
+
+footer {
   background-color: #2f3234;
 }
-.dark-color{
+
+.dark-color {
   background-color: #343739;
 }
 
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
-    .position-#{$breakpoint}-fixed{
-      position : fixed !important;
+    .position-#{$breakpoint}-fixed {
+      position: fixed !important;
       max-width: 40%;
     }
   }
 }
+
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
