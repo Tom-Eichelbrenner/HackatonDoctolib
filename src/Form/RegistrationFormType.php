@@ -88,7 +88,13 @@ class RegistrationFormType extends AbstractType
                 'pathology', null, [
                 'mapped' => false
                 ]
-            );
+            )
+            ->add(
+                'disclaimer', CheckboxType::class, [
+                    'mapped' => false,
+                    'required' => true,
+            ]
+    );
     }
 
     public function configureOptions(OptionsResolver $resolver)
