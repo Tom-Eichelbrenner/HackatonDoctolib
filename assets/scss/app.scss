@@ -6,7 +6,6 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/bootstrap-grid";
-
 $theme-colors: (
         "primary":    $primary-color,
         "secondary":  $secondary-color,
@@ -22,10 +21,62 @@ $theme-colors: (
   min-height: 84vh;
 }
 
-#msform {
-  text-align: center;
-  position: relative;
-  margin-top: 20px;
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,300,600");
+
+.slider-list {
+  list-style:none;
+  overflow: hidden;
+}
+
+.slide {
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.44);
+  padding: 1.5em 1em;
+  border-bottom: 1px solid #278279 ;
+}
+
+.message {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.subject {
+  font-weight: bold;
+  color: #000
+}
+
+
+.bubble-text {
+  background: #DEB841;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 3px;
+  width: 350px;
+}
+
+.bubble-text::after{
+  content:"";
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 20px solid #DEB841;
+  position: absolute;
+}
+.bubble-textd {
+  background: #00BD9D;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 3px;
+  width: 350px;
+}
+
+.bubble-textd::after{
+  content:"";
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 20px solid #00BD9D;
+  position: absolute;
 }
 
 #msform fieldset .form-card {
