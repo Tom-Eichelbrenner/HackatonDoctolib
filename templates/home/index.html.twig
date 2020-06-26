@@ -6,7 +6,7 @@
     {% if is_granted('ROLE_PATIENT') %}
         <div class="row">
             <div class="container-fluid col-11 col-lg-6">
-                <div class="card bg-dark text-white position-lg-fixed">
+                <div class="card bg-dark text-white position-lg-fixed" style="z-index: 1">
                     <h2 class="ml-5 p-2">Mes informations</h2>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-dark">
@@ -19,11 +19,18 @@
                                     class="btn btn-primary">Modifier mes informations</a></li>
                     </ul>
                 </div>
+                <div class="position-absolute fixed-bottom d-none d-lg-block" style="z-index: 0">
+                    <img src="/build/images/doctors.png" class="" height="400">
+                </div>
             </div>
             <div class="container-fluid col-11 col-lg-6">
                 <div class=>
-                    <div class="row mx-auto">
-                        <a href="{{ path('ask_new') }}" class="btn bg-info text-white p-4 mt-2">
+                    <div class="row mx-auto bg-dark rounded p-5">
+                        <div class="mr-4">
+                            <img src="/build/images/doctor-man.png" height="200"/>
+                        </div>
+                        <a href="{{ path('ask_new') }}" class="btn bg-info text-white p-4 my-auto mx-auto"
+                           style="height: fit-content">
                             <strong>J'ai besoin d'être conseillé par un médecin</strong></a>
                     </div>
                     <hr class="my-4 w-50 ml-5"/>
@@ -43,7 +50,7 @@
                                 <p class="card-text">Description : {{ advice.problem }}</p>
                                 {% if advice.isViewed == true %}
                                     <a class="btn btn-warning my-2"
-                                            href="{{ path('conversation_show', {'id': advice.id}) }}">Afficher
+                                       href="{{ path('conversation_show', {'id': advice.id}) }}">Afficher
                                         cette conversation
                                     </a>
                                 {% endif %}
@@ -73,14 +80,27 @@
             </div>
         </div>
     {% else %}
-        <div class="d-flex flex-wrap justify-content-center">
-            <div class="col-12 col-lg-2 text-white rounded d-flex flex-column">
-                <p>J'ai déja un compte:</p>
-                <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2 ">Me connecter</a>
+        <div>
+            <div class="row mb-5">
+                <img src="/build/images/doctors-home.png" class="mx-auto" height="300">
             </div>
-            <div class="col-12 col-lg-2 text-white rounded d-flex flex-column">
-                <p>Je n'ai pas encore de compte:</p>
-                <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2 ">M'inscrire</a>
+            <div class="row mx-auto">
+                <h2 class="text-white mx-auto">Bienvenue sur Eir Advices!</h2>
+            </div>
+            <div class="row mx-auto">
+                <h4 class="mx-auto text-white">Le site qui vous permet de demander conseil à des médecins partout en
+                    France afin d'obtenir des conseils personnalisés!</h4>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center mt-3">
+                <div class="col-12 col-lg-2 text-white rounded d-flex flex-column mt-3">
+                    <p>J'ai déja un compte:</p>
+                    <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2 ">Me connecter</a>
+                </div>
+                <div class="col-12 col-lg-2 text-white rounded d-flex flex-column mt-3">
+                    <p>Je n'ai pas encore de compte:</p>
+                    <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2 ">M'inscrire</a>
+                </div>
+
             </div>
         </div>
     {% endif %}
