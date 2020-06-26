@@ -47,13 +47,11 @@ class RegistrationFormType extends AbstractType
             )
             ->add(
                 'fName', null, [
-                'label' => 'Prénom',
                 'mapped' => false
                 ]
             )
             ->add(
                 'lName', null, [
-                'label' => 'Nom',
                 'mapped' => false
                 ]
             )
@@ -72,7 +70,6 @@ class RegistrationFormType extends AbstractType
                     'class' => Region::class,
                     'choice_label' => 'name',
                     'by_reference' => false,
-                    'label' => 'Région',
                     'mapped' => false
                 ]
             )
@@ -84,7 +81,6 @@ class RegistrationFormType extends AbstractType
                     'Un helicoptère d\'attaque' => 'Un helicoptère d\'attaque',
                     'Une teub géante' => 'Une teub géante',
                 ],
-                'label' => 'Je suis : ',
                 'mapped' => false]
             )
         //            ->add('pathology', null,
@@ -92,7 +88,6 @@ class RegistrationFormType extends AbstractType
         //                'mapped'=>false)
             ->add(
                 'pathology', null, [
-                'label' => "Mes maladies diagnostiquées (ne pas remplir si nul)",
                 'mapped' => false
                 ]
             );
