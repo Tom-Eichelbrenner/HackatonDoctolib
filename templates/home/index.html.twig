@@ -73,14 +73,14 @@
             </div>
         </div>
     {% else %}
-        <div class="d-flex  justify-content-center">
-            <div class=" text-white m-5 p-2 rounded">
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="col-12 col-lg-2 text-white rounded d-flex flex-column">
                 <p>J'ai déja un compte:</p>
-                <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2 w-100">Me connecter</a>
+                <a href="{{ path('app_login') }}" class="btn btn-dark text-white m-2 ">Me connecter</a>
             </div>
-            <div class=" text-white m-5 p-2 rounded ">
+            <div class="col-12 col-lg-2 text-white rounded d-flex flex-column">
                 <p>Je n'ai pas encore de compte:</p>
-                <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2 w-100">M'inscrire</a>
+                <a href="{{ path('app_register') }}" class="btn btn-dark text-white m-2 ">M'inscrire</a>
             </div>
         </div>
     {% endif %}
