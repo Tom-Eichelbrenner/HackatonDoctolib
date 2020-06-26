@@ -78,8 +78,6 @@ class RegistrationFormType extends AbstractType
                 'choices' => [
                     'Un homme' => 'Homme',
                     'Une femme' => 'Femme',
-                    'Un helicoptère d\'attaque' => 'Un helicoptère d\'attaque',
-                    'Une teub géante' => 'Une teub géante',
                 ],
                 'mapped' => false]
             )
