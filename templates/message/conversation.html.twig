@@ -3,37 +3,34 @@
 {% block title %}Hello MessageController!{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container col-5 rounded" style="background-color: rgba(255,255,255,0.42)">
         <div class="row mx-auto my-5">
-            <h3 class="text-center mx-auto">{% if app.user.doctor == null %}{{ conv.doctor.fName }} {{ conv.doctor.lName }}{% else %}{{ conv.patient.fName }} {{ conv.patient.lName }}{% endif %}</h3>
+            <h3 class="my-3 text-center mx-auto">{% if app.user.doctor == null %}{{ conv.doctor.fName }} {{ conv.doctor.lName }}{% else %}{{ conv.patient.fName }} {{ conv.patient.lName }}{% endif %}</h3>
         </div>
-        <div class="container-fluid mx-auto col-7">
-            {% for message in messages %}
-                {% if message.doctor != null %}
-                    <div class="container-fluid" style="">
-                        <div class="row col-3">
-                            <h4>{{ message.doctor.lName }} {{ message.doctor.fName }} : </h4>
-                        </div>
-                        <div class="row ">
-                            <p>{{ message.message }}</p>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="row col-3">
-                        <h4>{{ message.patient.lName }} {{ message.patient.fName }} : </h4>
-                    </div>
-                    <div class="row">
-                        <p>{{ message.message }}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row col-7 mx-auto">
-            <form class="mx-auto" action="" method="post">
-                <input type="text" name="message" id="message" class="message">
-                <button type="submit" id="submit" class="submit" name="submit">Envoyer</button>
-            </form>
-        </div>
+        {% for message in messages %}
+            {% if message.doctor != null %}
+                <div class="ml-auto col-5">
+                    <p class="text-right">{{ message.message }}</p>
+
+                </div>
+            {% else %}
+                <div class="mr-auto col-5">
+                    <p class="text-left">{{ message.message }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <form class="col-8 mx-auto" action="" method="post">
+
+            <div class="row mx-auto border-top d-flex flex-wrap">
+
+                <textarea name="message" id="message" class="form-control message"></textarea>
+                <div class="col-3 mx-auto">
+                    <button type="submit" id="submit" class="btn btn-action" name="submit">Envoyer</button>
+                </div>
+
+            </div>
+        </form>
+
     </div>
 
 {% endblock %}
