@@ -10,7 +10,7 @@
 
         {% if app.user %}
             <div class="mb-3 text-white">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                Vous êtes déja connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
         <div class="col-11 col-lg-6 text-white mx-auto m-3">

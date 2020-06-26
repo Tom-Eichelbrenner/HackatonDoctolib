@@ -5,6 +5,7 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/bootstrap-grid";
 
 $theme-colors: (
         "primary":    $primary-color,
@@ -28,7 +29,7 @@ $theme-colors: (
 }
 
 #msform fieldset .form-card {
-  background: $darker-color;
+  background: white;
   border: 0 none;
   border-radius: 0px;
   padding: 20px 40px 30px 40px;
@@ -43,7 +44,7 @@ $theme-colors: (
 }
 
 #msform fieldset {
-  background: $darker-color;
+  background: white;
   border: 0 none;
   border-radius: 0.5rem;
   box-sizing: border-box;
@@ -117,6 +118,7 @@ $theme-colors: (
     box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
   }
 }
+
 select.list-dt {
   outline: 0;
   border-bottom: 1px solid #ccc;
@@ -205,16 +207,25 @@ select.list-dt:focus {
     }
   }
 
-  body{
-    background: radial-gradient(circle at 99% 0%, rgba(235, 235, 235,0.03) 0%, rgba(235, 235, 235,0.03) 50%,rgba(142, 142, 142,0.03) 50%, rgba(142, 142, 142,0.03) 100%),radial-gradient(circle at 84% 89%, rgba(229, 229, 229,0.03) 0%, rgba(229, 229, 229,0.03) 50%,rgba(1, 1, 1,0.03) 50%, rgba(1, 1, 1,0.03) 100%),radial-gradient(circle at 89% 20%, rgba(219, 219, 219,0.03) 0%, rgba(219, 219, 219,0.03) 50%,rgba(38, 38, 38,0.03) 50%, rgba(38, 38, 38,0.03) 100%),radial-gradient(circle at 90% 0%, rgba(48, 48, 48,0.03) 0%, rgba(48, 48, 48,0.03) 50%,rgba(109, 109, 109,0.03) 50%, rgba(109, 109, 109,0.03) 100%),linear-gradient(170deg, rgb(0,96,255),rgb(0,0,0));}
-  nav{
-    background-color: rgba(255, 255, 255, 0.1);
+body{
+  background: radial-gradient(circle at 99% 0%, rgba(235, 235, 235,0.03) 0%, rgba(235, 235, 235,0.03) 50%,rgba(142, 142, 142,0.03) 50%, rgba(142, 142, 142,0.03) 100%),radial-gradient(circle at 84% 89%, rgba(229, 229, 229,0.03) 0%, rgba(229, 229, 229,0.03) 50%,rgba(1, 1, 1,0.03) 50%, rgba(1, 1, 1,0.03) 100%),radial-gradient(circle at 89% 20%, rgba(219, 219, 219,0.03) 0%, rgba(219, 219, 219,0.03) 50%,rgba(38, 38, 38,0.03) 50%, rgba(38, 38, 38,0.03) 100%),radial-gradient(circle at 90% 0%, rgba(48, 48, 48,0.03) 0%, rgba(48, 48, 48,0.03) 50%,rgba(109, 109, 109,0.03) 50%, rgba(109, 109, 109,0.03) 100%),linear-gradient(170deg, rgb(0,96,255),rgb(0,0,0));}
+nav{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+footer{
+  background-color: #2f3234;
+}
+.dark-color{
+  background-color: #343739;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .position-#{$breakpoint}-fixed{
+      position : fixed !important;
+      max-width: 40%;
+    }
   }
-  footer{
-    background-color: #2f3234;
-  }
-  .dark-color{
-    background-color: #343739;
-  }
-  @import "~bootstrap/scss/bootstrap";
-  @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
+}
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";

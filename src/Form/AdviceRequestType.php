@@ -14,16 +14,17 @@ class AdviceRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('topic', null, ['label' => 'Sujet'])
+            ->add('topic', null, ['label' => 'Intitulé de ma demande :'])
             ->add(
                 'pathology', EntityType::class, [
                     'class' => Speciality::class,
                     'choice_label' => 'category',
-                    'label' => 'Pathologie (si connue): ',
+
+                    'label' => 'Selectionnez une spécialité médicale si mon problème est lié à une de mes pathologies diagnostiquées (sinon laisser médecine générale) :',
                     'placeholder' => 'Je ne connais pas ma pathologie'
                 ]
             )
-            ->add('problem', null, ['label' => 'Je décris mon problème: '])/**
+            ->add('problem', null, ['label' => 'Je décris mon problème en détails :'])/**
          * ->add('patient', EntityType::class, [
          * 'class' => Patient::class,
          * 'choice_label' => 'fullname'

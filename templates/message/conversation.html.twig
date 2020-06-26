@@ -10,11 +10,13 @@
         <div class="container-fluid mx-auto col-7">
             {% for message in messages %}
                 {% if message.doctor != null %}
-                    <div class="row col-3">
-                        <h4>{{ message.doctor.lName }} {{ message.doctor.fName }} : </h4>
-                    </div>
-                    <div class="row ">
-                        <p>{{ message.message }}</p>
+                    <div class="container-fluid" style="">
+                        <div class="row col-3">
+                            <h4>{{ message.doctor.lName }} {{ message.doctor.fName }} : </h4>
+                        </div>
+                        <div class="row ">
+                            <p>{{ message.message }}</p>
+                        </div>
                     </div>
                 {% else %}
                     <div class="row col-3">
