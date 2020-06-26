@@ -26,8 +26,15 @@
                                     <div class="form-card">
                                         <h2 class="fs-title w-auto">Avertissements</h2>
                                         <p class="p-2">
-                                            Lorem ipsum
+                                            Cette application («App») ne fournit que des informations, n'est pas un conseil médical ou de traitement et ne peut pas être traitée comme telle par l'utilisateur.
+                                            En tant que telle, cette appli ne peut pas être invoquée à des fins de diagnostic médical ou comme recommandation de soins ou de traitement médicaux.
+                                            Les informations sur cette appli ne remplacent pas les conseils médicaux professionnels, le diagnostic ou le traitement.
+                                            Tout le contenu, y compris le texte, les graphiques, les images et les informations, contenu sur ou disponible via cette appli est uniquement à des fins d'information générale
                                         </p>
+                                        {{ form_row(registrationForm.disclaimer, {
+                                            label: "J'ai bien pris connaissance des conditions d'utilisation",
+                                        }) }}
+                                        <ul class="alert-danger js-errors"></ul>
                                     </div>
                                     <div>
                                         <input type="button" name="next" class="next action-button" value="Suivant" />
@@ -110,4 +117,8 @@
     {{ parent() }}
     {{ encore_entry_script_tags('datepicker') }}
     {{ encore_entry_script_tags('registration') }}
+    bootstrapValidate(
+    '#docs-demo',
+    'email:Enter a valid E-Mail Address!'
+    );
 {% endblock %}

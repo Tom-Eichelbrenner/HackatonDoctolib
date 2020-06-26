@@ -1,3 +1,4 @@
+require('jquery-validation/dist/jquery.validate.min');
 $(document).ready(function(){
 
     var current_fs, next_fs, previous_fs; //fieldsets
@@ -5,9 +6,24 @@ $(document).ready(function(){
 
     $(".next").click(function(){
 
-        current_fs = $(this).parent().parent();
-        next_fs = $(this).parent().parent().next();
-
+        var form = $("#msform");
+        form.validate({
+            rules: {
+                "registration_form[disclaimer]": {
+                    required: true,
+                },
+            },
+            errorLabelContainer: ".js-errors",
+            messages: {
+                "registration_form[disclaimer]": {
+                    required: "Vous devez accepter les conditions d'utilisation avant de poursuivre.",
+                },
+            }
+        });
+        if (form.valid() === true){
+            current_fs = $(this).parent().parent();
+            next_fs = $(this).parent().parent().next();
+        }
 //Add Class Active
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
