@@ -38,8 +38,9 @@ $theme-colors: (
   margin: 0 3% 20px 3%;
   position: relative;
 
+  /** Disclaimer text **/
   p{
-    color: $white;
+    color: $darker-color;
   }
 }
 
@@ -63,10 +64,13 @@ $theme-colors: (
     .form-card {
       text-align: left;
       color: $white;
+
+      label {
+        color: $darker-color;
+      }
     }
   }
   input, textarea {
-    padding: 0px 8px 4px 8px;
     border: none;
     border-bottom: 1px solid #ccc;
     border-radius: 0px;
@@ -76,7 +80,6 @@ $theme-colors: (
     box-sizing: border-box;
     font-family: montserrat;
     color: $darker-color;
-    background-color: lightgray;
     font-size: 16px;
     letter-spacing: 1px;
   }
@@ -89,13 +92,13 @@ $theme-colors: (
     border-bottom: 2px solid $primary-color;
     outline-width: 0;
   }
-  .action-button {
-    width: 100px;
+  .action-button, .submit-button {
+    width: 200px;
     background: $primary-color;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 20px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
@@ -104,12 +107,12 @@ $theme-colors: (
     box-shadow: 0 0 0 2px white, 0 0 0 3px $primary-color;
   }
   .action-button-previous {
-    width: 100px;
+    width: 200px;
     background: #616161;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 0px;
+    border-radius: 20px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
@@ -227,5 +230,14 @@ footer{
     }
   }
 }
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .w-#{$breakpoint}-25{
+      width: 25% !important;
+    }
+  }
+}
+
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
