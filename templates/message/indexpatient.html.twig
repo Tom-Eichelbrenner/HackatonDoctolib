@@ -13,7 +13,7 @@
 
         <section>
             <ul class="slider-list col-6 mx-auto">
-                {% for request in requests %}
+                {% for request in requests  %}
                     <a href="{{ path('conversation_show', {'id': request.id}) }}" style="color: black">
                         <li class="slide">
                             <p class="message"><span
