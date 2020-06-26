@@ -11,7 +11,7 @@
             <div class="col-11 col-lg-8 text-center p-0 mt-3 mb-2">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                     {{ form_start(registrationForm, {'attr': {'id': 'msform'}}) }}
-                    <h2><strong>Je m'inscris</strong></h2>
+                    <h2 class="text-primary"><strong>Je m'inscris</strong></h2>
                     <div class="row">
                         <div class="col-12 mx-0">
                                 <!-- progressbar -->
@@ -24,40 +24,66 @@
                                 </ul> <!-- fieldsets -->
                                 <fieldset>
                                     <div class="form-card">
-                                        <h2 class="fs-title">Avertissements</h2>
-                                        <p>
+                                        <h2 class="fs-title w-auto">Avertissements</h2>
+                                        <p class="p-2">
                                             Lorem ipsum
                                         </p>
                                     </div>
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <div>
+                                        <input type="button" name="next" class="next action-button" value="Suivant" />
+                                    </div>
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Informations de contact</h2>
-                                        {{ form_row(registrationForm.region) }}
-                                        {{ form_row(registrationForm.email) }}
+                                        {{ form_row(registrationForm.region, {
+                                            label: 'Département de résidence',
+                                            attr: {
+                                                'class': 'list-dt',
+                                            }
+                                        }) }}
+                                        {{ form_row(registrationForm.email, {
+                                            label: 'Adresse e-mail'
+                                        }) }}
                                     </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <div class="d-lg-flex flex-lg-row-reverse justify-content-center">
+                                        <input type="button" name="next" class="next action-button" value="Suivant" />
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
+                                    </div>
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Informations personnelles</h2>
-                                        {{ form_row(registrationForm.fName) }}
-                                        {{ form_row(registrationForm.lName) }}
-                                        {{ form_row(registrationForm.sexe) }}
-                                        {{ form_row(registrationForm.birthDate) }}
+                                        {{ form_row(registrationForm.lName, {
+                                            label: 'Nom de famille'
+                                        }) }}
+                                        {{ form_row(registrationForm.fName, {
+                                            label: 'Prénom'
+                                        }) }}
+                                        {{ form_row(registrationForm.sexe, {
+                                            label: 'Je suis'
+                                        }) }}
+                                        {{ form_row(registrationForm.birthDate, {
+                                            label: 'Date de naissance'
+                                        }) }}
                                     </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <div class="d-lg-flex flex-lg-row-reverse justify-content-center">
+                                        <input type="button" name="next" class="next action-button" value="Suivant" />
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
+                                    </div>
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Maladies connues</h2>
-                                        {{ form_row(registrationForm.pathology) }}
+                                        {{ form_row(registrationForm.pathology, {
+                                            label: 'Si vous avez une maladie ou une pathologie diagnostiquée '
+                                        }) }}
                                     </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                    <div class="d-lg-flex flex-lg-row-reverse justify-content-center">
+                                        <input type="button" name="next" class="next action-button" value="Suivant" />
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
+                                    </div>
+
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
@@ -66,8 +92,10 @@
                                             label: 'Mot de passe'
                                         }) }}
                                     </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <button type="submit" class="btn btn-primary">Je valide mon inscription</button>
+                                    <div class="d-lg-flex flex-lg-row-reverse justify-content-center">
+                                        <button type="submit" class="btn btn-primary action-button w-lg-25">Je valide mon inscription</button>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
+                                    </div>
                                 </fieldset>
                             {{ form_end(registrationForm) }}
                         </div>

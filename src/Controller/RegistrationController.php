@@ -18,10 +18,10 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class RegistrationController extends AbstractController
 {
 
-    /**
+    /*
      * @Route("/register", name="app_register")
      */
-    public function register(){
+    /*public function register(){
         if ($this->getUser()) {
             return $this->redirectToRoute('home');
         }
@@ -35,9 +35,9 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/registerrole.html.twig');
-    }
+    }*/
     /**
-     * @Route("/register/patient", name="app_register_patient")
+     * @Route("/register", name="app_register")
      */
     public function registerpatient(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
     {

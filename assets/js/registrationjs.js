@@ -5,8 +5,8 @@ $(document).ready(function(){
 
     $(".next").click(function(){
 
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
+        current_fs = $(this).parent().parent();
+        next_fs = $(this).parent().parent().next();
 
 //Add Class Active
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
@@ -33,8 +33,8 @@ $(document).ready(function(){
 
     $(".previous").click(function(){
 
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
+        current_fs = $(this).parent().parent();
+        previous_fs = $(this).parent().parent().prev();
 
 //Remove class active
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
